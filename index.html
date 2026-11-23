@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="description" content="Lịch trực Khoa Khám bệnh, chữa bệnh - lịch âm, ngày lễ, xếp lịch xoay vòng">
+<title>Lịch trực Khoa KCB</title>
+<meta name="theme-color" content="#22a865">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lịch trực">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<div id="app"></div>
+<div class="tabs">
+<button id="t-td" onclick="T('td')"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M8 14h4v3H8z"/></svg>Hôm nay</button>
+<button id="t-cal" onclick="T('cal')"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01"/></svg>Lịch tháng</button>
+<button id="t-ev" onclick="T('ev')"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>Sự kiện</button>
+<button id="t-st" onclick="T('st')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Cá nhân</button>
+<button id="t-ad" onclick="T('ad')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>Quản trị</button></div>
+<div id="ov"></div>
+<script src="js/lunar.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pwa.js"></script></body></html>

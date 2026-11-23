@@ -1,0 +1,18 @@
+/* Lịch âm Việt Nam (múi giờ UTC+7), ngày lễ, can chi, ngày/giờ hoàng đạo.
+   Thuật toán âm lịch: Hồ Ngọc Đức. */
+const INT=Math.floor,PI=Math.PI,TZ=7,$=s=>document.querySelector(s);
+function jdF(d,m,y){var a=INT((14-m)/12),Y=y+4800-a,M=m+12*a-3;return d+INT((153*M+2)/5)+365*Y+INT(Y/4)-INT(Y/100)+INT(Y/400)-32045}
+function jdD(jd){var a=jd+32044,b=INT((4*a+3)/146097),c=a-INT(b*146097/4),d=INT((4*c+3)/1461),e=c-INT(1461*d/4),m=INT((5*e+2)/153);return[e-INT((153*m+2)/5)+1,m+3-12*INT(m/10),b*100+d-4800+INT(m/10)]}
+function NM(k){var T=k/1236.85,T2=T*T,T3=T2*T,r=PI/180,J=2415020.75933+29.53058868*k+0.0001178*T2-0.000000155*T3;J+=0.00033*Math.sin((166.56+132.87*T-0.009173*T2)*r);var M=359.2242+29.10535608*k-0.0000333*T2-0.00000347*T3,P=306.0253+385.81691806*k+0.0107306*T2+0.00001236*T3,F=21.2964+390.67050646*k-0.0016528*T2-0.00000239*T3,s=Math.sin;var C=(0.1734-0.000393*T)*s(M*r)+0.0021*s(2*r*M)-0.4068*s(P*r)+0.0161*s(r*2*P)-0.0004*s(r*3*P)+0.0104*s(r*2*F)-0.0051*s(r*(M+P))-0.0074*s(r*(M-P))+0.0004*s(r*(2*F+M))-0.0004*s(r*(2*F-M))-0.0006*s(r*(2*F+P))+0.001*s(r*(2*F-P))+0.0005*s(r*(2*P+M));var dt=T<-11?0.001+0.000839*T+0.0002261*T2-0.00000845*T3-0.000000081*T*T3:-0.000278+0.000265*T+0.000262*T2;return J+C-dt}
+function SLo(j){var T=(j-2451545)/36525,T2=T*T,r=PI/180,M=357.5291+35999.0503*T-0.0001559*T2-0.00000048*T*T2,L0=280.46645+36000.76983*T+0.0003032*T2,DL=(1.9146-0.004817*T-0.000014*T2)*Math.sin(r*M)+(0.019993-0.000101*T)*Math.sin(r*2*M)+0.00029*Math.sin(r*3*M),L=(L0+DL)*r;return L-PI*2*INT(L/(PI*2))}
+const gNM=k=>INT(NM(k)+0.5+TZ/24),gSL=d=>INT(SLo(d-0.5-TZ/24)/PI*6);
+function m11(y){var k=INT((jdF(31,12,y)-2415021)/29.530588853),n=gNM(k);if(gSL(n)>=9)n=gNM(k-1);return n}
+function lOff(a){var k=INT((a-2415021.076998695)/29.530588853+0.5),l,i=1,r=gSL(gNM(k+1));do{l=r;i++;r=gSL(gNM(k+i))}while(r!=l&&i<14);return i-1}
+const LC={};
+function lunar(d,m,y){const K=d+'/'+m+'/'+y;if(LC[K])return LC[K];var dn=jdF(d,m,y),k=INT((dn-2415021.076998695)/29.530588853),ms=gNM(k+1);if(ms>dn)ms=gNM(k);var a=m11(y),b=a,ly;if(a>=ms){ly=y;a=m11(y-1)}else{ly=y+1;b=m11(y+1)}var ld=dn-ms+1,df=INT((ms-a)/29),lp=0,lm=df+11;if(b-a>365){var o=lOff(a);if(df>=o){lm=df+10;if(df==o)lp=1}}if(lm>12)lm-=12;if(lm>=11&&df<4)ly-=1;return LC[K]=[ld,lm,ly,lp]}
+const SOL={'1-1':['Tết Dương lịch',1],'30-4':['Giải phóng miền Nam',1],'1-5':['Quốc tế Lao động',1],'2-9':['Quốc khánh',1],'7-4':['Ngày Sức khỏe thế giới',0],'14-2':['Valentine',0],'27-2':['Ngày Thầy thuốc Việt Nam',0],'8-3':['Quốc tế Phụ nữ',0],'1-6':['Quốc tế Thiếu nhi',0],'28-6':['Ngày Gia đình Việt Nam',0],'27-7':['Ngày Thương binh Liệt sĩ',0],'20-10':['Phụ nữ Việt Nam',0],'20-11':['Ngày Nhà giáo Việt Nam',0],'22-12':['Quân đội nhân dân VN',0],'25-12':['Giáng sinh',0]};
+const LUN={'1-1':['Mùng 1 Tết Nguyên đán',1],'2-1':['Mùng 2 Tết',1],'3-1':['Mùng 3 Tết',1],'4-1':['Mùng 4 Tết',1],'15-1':['Rằm tháng Giêng',0],'10-3':['Giỗ Tổ Hùng Vương',1],'5-5':['Tết Đoan Ngọ',0],'15-7':['Vu Lan',0],'15-8':['Tết Trung thu',0],'23-12':['Ông Công Ông Táo',0]};
+function hol(d,m,y){const l=lunar(d,m,y),n=jdD(jdF(d,m,y)+1),ln=lunar(n[0],n[1],n[2]);let r=[];const a=SOL[d+'-'+m];if(a)r.push(a);if(!l[3]){const b=LUN[l[0]+'-'+l[1]];if(b)r.push(b);if(ln[0]==1&&ln[1]==1)r.push(['Giao thừa (ngày cuối năm âm)',1])}return r}
+const CAN=['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'],CHI=['Tý','Sửu','Dần','Mão','Thìn','Tỵ','Ngọ','Mùi','Thân','Dậu','Tuất','Hợi'],HD=[0,1,4,5,7,10];
+const yc=y=>CAN[(y+6)%10]+' '+CHI[(y+8)%12],WD=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
+const cd=(d,m,y)=>{const j=jdF(d,m,y);return[(j+9)%10,(j+1)%12]},isHD=(lm,c)=>HD.some(o=>((lm-1)%6*2+o)%12==c);

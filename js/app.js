@@ -1,0 +1,68 @@
+/* Ứng dụng lịch trực: dữ liệu, xoay vòng, giao diện, quản trị. */
+const PAL=['#f0a8a0','#f5c58b','#ead489','#a9d4a6','#8fd0c8','#9cc4ea','#bdb4ea','#eab0cf'];
+const pad=n=>String(n).padStart(2,'0'),key=(y,m,d)=>y+'-'+pad(m+1)+'-'+pad(d),P=s=>s.split('-').map(Number);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),sn=n=>n.trim().split(/\s+/).pop();
+const BL='<svg class="bl" viewBox="0 0 150 110"><path d="M150 18C110 30 90 50 60 62S20 80 0 74M110 34C100 52 96 60 92 78" stroke="#6b4a3a" stroke-width="3" fill="none"/><circle cx="128" cy="24" r="7" fill="#e8665a"/><circle cx="104" cy="40" r="8" fill="#ef857a"/><circle cx="78" cy="56" r="7" fill="#e8665a"/><circle cx="92" cy="76" r="6" fill="#f2a39c"/><circle cx="54" cy="66" r="6" fill="#f2a39c"/><circle cx="140" cy="12" r="5" fill="#f2a39c"/><circle cx="30" cy="76" r="5" fill="#e8665a"/></svg>';
+const MT='<svg class="mt" viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 80V46C40 30 70 52 110 38S170 14 215 36 300 24 340 40 380 34 400 38V80Z" fill="#c5d5de"/><path d="M0 80V58C50 44 90 66 140 52S230 40 280 56 360 48 400 54V80Z" fill="#a9c1cf"/><path d="M0 80V68C60 60 120 74 200 66S330 60 400 70V80Z" fill="#e6cdbb"/></svg>';
+const NOW=new Date();
+/* Mã quản trị lưu dạng mã băm, không lưu nguyên văn. Đặt mã mặc định riêng: chạy pinHash('mã') trong Console rồi dán vào DEFAULT_PH. */
+const pinHash=s=>{let a=0xdeadbeef,b=0x41c6ce57;const t='lt$'+s;for(let i=0;i<t.length;i++){const c=t.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);b=Math.imul(b^(b>>>16),2246822507)^Math.imul(a^(a>>>13),3266489909);return(4294967296*(2097151&b)+(a>>>0)).toString(36)};
+const DEFAULT_PH='t0w3otgevu';
+let S={staff:['BS. Nguyễn Văn An','BS. Trần Thị Bình','ĐD. Lê Minh Châu','BS. Phạm Quốc Dũng','ĐD. Hoàng Thu Hà','KTV. Vũ Đức Hải'].map((n,i)=>({id:i,name:n})),nid:6,start:key(NOW.getFullYear(),NOW.getMonth(),1),si:0,sw:{},log:[],ph:DEFAULT_PH};
+try{const x=JSON.parse(localStorage.getItem('lichtruc-kcb'));if(x&&x.staff)S=x}catch(e){}
+const save=()=>{try{localStorage.setItem('lichtruc-kcb',JSON.stringify(S))}catch(e){}};
+if(S.pin!=null){S.ph=pinHash(String(S.pin));delete S.pin;save()}if(!S.ph)S.ph=DEFAULT_PH;
+let V={y:NOW.getFullYear(),m:NOW.getMonth(),tab:'td',f:null,sel:[NOW.getFullYear(),NOW.getMonth(),NOW.getDate()]},ADM=false;
+const byId=id=>S.staff.find(s=>s.id==id),col=p=>PAL[p.id%8];
+function duty(y,m,d){const k=key(y,m,d);if(S.sw[k]!=null){const p=byId(S.sw[k]);if(p)return p}const n=S.staff.length;if(!n)return null;const a=P(S.start),df=jdF(d,m+1,y)-jdF(a[2],a[1],a[0]);return S.staff[(((S.si+df)%n)+n)%n]}
+const dutyK=k=>{const a=P(k);return duty(a[0],a[1]-1,a[2])};
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}
+function setSel(y,m,d){const t=new Date(y,m,d);V.sel=[t.getFullYear(),t.getMonth(),t.getDate()];V.y=V.sel[0];V.m=V.sel[1]}
+const T=t=>{V.tab=t;render()},F=id=>{V.f=id;render()},D=n=>{setSel(V.sel[0],V.sel[1],V.sel[2]+n);render()},goT=()=>{setSel(NOW.getFullYear(),NOW.getMonth(),NOW.getDate());V.tab='td';render()};
+function M(d){V.m+=d;if(V.m<0){V.m=11;V.y--}if(V.m>11){V.m=0;V.y++}render()}
+function pick(){$('#ov').innerHTML=`<div class="ov" onclick="if(event.target==this)CL()"><div class="sh"><h3>Chọn ngày</h3><input type="date" value="${key(...V.sel)}" onchange="const a=P(this.value);if(a[0]){setSel(a[0],a[1]-1,a[2]);V.tab='td';CL();render()}"><button class="btn" onclick="CL()">Đóng</button></div></div>`}
+const hdr=()=>`<div class="top"><button class="pill" onclick="goT()">Hôm nay</button><b class="ttl">Tháng ${V.m+1} - ${V.y}</b><button class="pill" onclick="pick()">Chọn ngày</button></div>`;
+function nav(){const l=lunar(15,V.m+1,V.y);return `<div class="nav"><button class="ib" onclick="M(-1)">‹</button><h2>Tháng ${V.m+1}, ${V.y}<small>Năm ${yc(l[2])}</small></h2><button class="ib" onclick="M(1)">›</button></div>`}
+function chips(){return `<div class="chips"><button class="chip ${V.f==null?'on':''}" onclick="F(null)">Tất cả</button>`+S.staff.map(p=>`<button class="chip ${V.f===p.id?'on':''}" onclick="F(${p.id})">${esc(sn(p.name))}</button>`).join('')+'</div>'}
+function tdV(){const[y,m,d]=V.sel,k=key(y,m,d),l=lunar(d,m+1,y),hs=hol(d,m+1,y),h0=hs.find(x=>x[1])||hs[0],p=duty(y,m,d),c=cd(d,m+1,y),hd=isHD(l[1],c[1]),mc=[(l[2]*12+l[1]+3)%10,(l[1]+1)%12],st=(8+2*(c[1]%6))%12;
+return `<div class="paper">${BL}${BL.replace('class="bl"','class="bl l"')}<div class="z sunw"><button class="ar" onclick="D(-1)">‹</button><div class="sunc"><div class="sun"></div><div class="num">${d}</div></div><button class="ar" onclick="D(1)">›</button></div><div class="z wd">${WD[new Date(y,m,d).getDay()].toUpperCase()}</div><div class="z hn">${h0?esc(h0[0]):''}</div><div class="z duty"><span class="mut sm">Người trực</span><b style="background:${p?col(p):'none'}">${p?esc(p.name):'Chưa xếp lịch'}</b></div>${MT}<button class="more" onclick="openDay('${k}')">Xem chi tiết ›</button></div>
+<div class="i3"><div><h4>GIỜ</h4><b id="gh"></b><div class="clk" id="clk"></div><div class="tiny">${HD.map(o=>CHI[(st+o)%12]).join(', ')}</div></div><div><div class="ld">${l[0]}</div><h4 style="color:var(--red)">THÁNG ${l[1]}${l[3]?' NHUẬN':''}</h4><div class="hd2 ${hd?'':'bad'}">● Ngày ${hd?'Hoàng':'Hắc'} Đạo</div></div><div><h4>ÂM LỊCH</h4><b>Năm ${yc(l[2])}</b><b>Tháng ${CAN[mc[0]]} ${CHI[mc[1]]}</b><b>Ngày ${CAN[c[0]]} ${CHI[c[1]]}</b></div></div>`}
+function tick(){const e=$('#clk');if(!e)return;const n=new Date();e.textContent=pad(n.getHours())+':'+pad(n.getMinutes());$('#gh').textContent='Giờ '+CHI[INT((n.getHours()+1)/2)%12]}
+setInterval(tick,20000);
+function calV(){const y=V.y,m=V.m,fd=(new Date(y,m,1).getDay()+6)%7,dim=new Date(y,m+1,0).getDate(),ty=NOW.getFullYear(),tm=NOW.getMonth(),td=NOW.getDate();
+let h=`<div class="card">${nav()}${chips()}<div class="g">`+['T2','T3','T4','T5','T6','T7','CN'].map((x,i)=>`<div class="w ${i==6?'cn':''}">${x}</div>`).join('');
+for(let i=0;i<fd;i++)h+='<div class="c e"></div>';
+for(let d=1;d<=dim;d++){const l=lunar(d,m+1,y),hs=hol(d,m+1,y),off=hs.some(x=>x[1]),p=duty(y,m,d),wd=(fd+d-1)%7,isT=y==ty&&m==tm&&d==td;
+h+=`<button class="c ${wd==6?'cn':''} ${off?'off':''} ${isT?'td':''} ${V.f!=null&&p&&p.id!==V.f?'dm':''}" onclick="openDay('${key(y,m,d)}')"><span class="d">${d}</span><span class="l">${l[0]==1?l[0]+'/'+l[1]:l[0]}</span>${hs.length?`<i class="${off?'':'s'}"></i>`:''}${p?`<span class="n" style="background:${col(p)}">${esc(sn(p.name))}</span>`:''}</button>`}
+return h+`</div><div class="lg"><span>Nghỉ lễ theo quy định</span><span class="s">Ngày kỷ niệm, lễ truyền thống</span></div></div>`}
+function evV(){let h='';for(let d=1;d<=new Date(V.y,V.m+1,0).getDate();d++)hol(d,V.m+1,V.y).forEach(x=>h+=`<div class="row" onclick="openDay('${key(V.y,V.m,d)}')"><b style="width:44px">${d}/${V.m+1}</b><div class="grow">${esc(x[0])}</div><span class="tag">${x[1]?'Nghỉ':'Kỷ niệm'}</span></div>`);return `<div class="card">${nav()}<h3>Ngày lễ, sự kiện trong tháng</h3>${h||'<div class="mut sm">Không có ngày lễ đặc biệt trong tháng này.</div>'}</div>`}
+function openDay(k){const a=P(k),dt=new Date(a[0],a[1]-1,a[2]),l=lunar(a[2],a[1],a[0]),hs=hol(a[2],a[1],a[0]),p=dutyK(k);
+let h=`<div class="ov" onclick="if(event.target==this)CL()"><div class="sh"><h3>${WD[dt.getDay()]}, ${a[2]}/${a[1]}/${a[0]}</h3><div class="sm mut">Âm lịch ${l[0]}/${l[1]}${l[3]?' (nhuận)':''} năm ${yc(l[2])}</div>${hs.map(x=>`<div class="sm" style="color:var(--red);margin-top:4px">${x[1]?'🏮 Nghỉ lễ':'✨'} · ${esc(x[0])}</div>`).join('')}
+<div class="card" style="margin:12px 0"><div class="mut sm">Người trực</div><b style="font-size:18px">${p?esc(p.name):'Chưa có'}</b>${S.sw[k]!=null?' <span class="tag">đã đổi</span>':''}</div><button class="btn o" onclick="setSel(${a[0]},${a[1]-1},${a[2]});V.tab='td';CL();render()">Xem trang ngày</button>`;
+if(ADM)h+=`<div class="sm mut" style="margin-top:10px">Đổi trực với ngày</div><input type="date" id="sd"><button class="btn o" onclick="swap('${k}')">Hoán đổi hai ngày trực</button><div class="sm mut" style="margin-top:10px">Hoặc chỉ định người khác trực</div><select id="sp">${S.staff.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select><button class="btn o" onclick="assign('${k}')">Chỉ định</button>`;
+$('#ov').innerHTML=h+`<button class="btn" style="margin-top:10px" onclick="CL()">Đóng</button></div></div>`}
+const CL=()=>$('#ov').innerHTML='';
+function swap(a){const b=$('#sd').value;if(!b||b==a)return toast('Hãy chọn ngày khác để đổi');const pa=dutyK(a),pb=dutyK(b);if(!pa||!pb)return;S.sw[a]=pb.id;S.sw[b]=pa.id;S.log.unshift({t:a+' ⇄ '+b,x:pa.name+' ⇄ '+pb.name});S.log=S.log.slice(0,30);save();CL();render();toast('Đã đổi lịch trực')}
+function assign(a){const id=+$('#sp').value;S.sw[a]=id;S.log.unshift({t:a,x:'Chỉ định: '+byId(id).name});S.log=S.log.slice(0,30);save();CL();render();toast('Đã cập nhật')}
+function stV(){const dim=new Date(V.y,V.m+1,0).getDate(),cnt={},mine=[];S.staff.forEach(s=>cnt[s.id]=0);for(let d=1;d<=dim;d++){const p=duty(V.y,V.m,d);if(p){cnt[p.id]++;if(p.id===V.f)mine.push(d)}}
+const mx=Math.max(1,...Object.values(cnt));let h=`<div class="card">${nav()}${chips()}`;
+if(V.f!=null){const p=byId(V.f);h+=`<h3>${esc(p.name)} · ${mine.length} ca trong tháng</h3>`+(mine.map(d=>{const l=lunar(d,V.m+1,V.y),hs=hol(d,V.m+1,V.y);return `<div class="row"><b style="width:30px">${d}</b><div class="grow">${WD[new Date(V.y,V.m,d).getDay()]}<div class="sm mut">Âm ${l[0]}/${l[1]}</div></div>${hs.length?`<span class="tag">${esc(hs[0][0])}</span>`:''}</div>`}).join('')||'<div class="mut sm">Không có ca trực trong tháng này.</div>')}
+else h+='<h3>Số ca trực trong tháng</h3>'+S.staff.map(s=>`<div class="row" onclick="F(${s.id})"><span class="dot" style="background:${col(s)}"></span><div class="grow">${esc(s.name)}<div class="bar"><b style="width:${cnt[s.id]/mx*100}%;background:${col(s)}"></b></div></div><b>${cnt[s.id]}</b></div>`).join('');
+return h+'</div>'}
+function login(){if(pinHash($('#pin').value)===S.ph){ADM=true;render();toast(S.ph===DEFAULT_PH?'Đang dùng mã mặc định, hãy đổi mã ngay':'Đã đăng nhập quản trị')}else toast('Sai mã quản trị')}
+const mv=(i,d)=>{const j=i+d;if(j<0||j>=S.staff.length)return;[S.staff[i],S.staff[j]]=[S.staff[j],S.staff[i]];save();render()};
+const del=i=>{if(S.staff.length<2)return toast('Cần ít nhất 1 cán bộ');S.staff.splice(i,1);S.si=0;save();render()};
+function add(){const n=$('#nn').value.trim();if(!n)return;S.staff.push({id:S.nid++,name:n});save();render()}
+function apply(){S.start=$('#st').value||S.start;S.si=+$('#si').value;save();render();toast('Đã xếp lịch xoay vòng')}
+function adV(){if(!ADM)return `<div class="card"><h3>🔒 Đăng nhập quản trị</h3><p class="mut sm">Cán bộ khác chỉ xem lịch. Nhập mã quản trị để xếp lịch, đổi lịch, chỉnh danh sách.</p><input id="pin" type="password" inputmode="numeric" autocomplete="off" placeholder="Mã quản trị" onkeydown="if(event.key==='Enter')login()"><button class="btn" onclick="login()">Đăng nhập</button></div>`;
+return `<div class="card"><h3>Xếp lịch trực xoay vòng</h3><p class="mut sm">Mỗi ngày một người, lần lượt theo thứ tự danh sách bên dưới.</p><div class="sm mut">Ngày bắt đầu vòng</div><input type="date" id="st" value="${S.start}"><div class="sm mut">Người trực đầu tiên</div><select id="si">${S.staff.map((s,i)=>`<option value="${i}" ${i==S.si?'selected':''}>${esc(s.name)}</option>`).join('')}</select><button class="btn" onclick="apply()">Áp dụng xếp lịch</button><button class="btn o" style="margin-top:8px" onclick="S.sw={};save();render();toast('Đã xóa các thay đổi')">Xóa mọi lần đổi lịch</button></div>
+<div class="card"><h3>Danh sách cán bộ (theo thứ tự xoay vòng)</h3>`+S.staff.map((s,i)=>`<div class="row"><span class="dot" style="background:${col(s)}"></span><div class="grow">${i+1}. ${esc(s.name)}</div><button class="sbtn" onclick="mv(${i},-1)">▲</button><button class="sbtn" onclick="mv(${i},1)">▼</button><button class="sbtn" onclick="del(${i})">✕</button></div>`).join('')+`<input id="nn" placeholder="Họ tên cán bộ mới"><button class="btn o" onclick="add()">Thêm cán bộ</button></div>
+<div class="card"><h3>Nhật ký đổi lịch</h3>${S.log.map(x=>`<div class="row"><div class="grow sm">${esc(x.t)}<div class="mut">${esc(x.x)}</div></div></div>`).join('')||'<div class="mut sm">Chưa có thay đổi.</div>'}</div>
+<div class="card"><h3>Mã quản trị</h3><input id="np" type="password" inputmode="numeric" placeholder="Mã mới (tối thiểu 4 số)"><button class="btn o" onclick="const v=$('#np').value;if(v.length<4)return toast('Mã quá ngắn');S.ph=pinHash(v);save();toast('Đã đổi mã')">Đổi mã</button><button class="btn" style="margin-top:8px" onclick="ADM=false;render()">Đăng xuất</button></div>`}
+function render(){$('#app').innerHTML=hdr()+({td:tdV,cal:calV,ev:evV,st:stV,ad:adV}[V.tab])();['td','cal','ev','st','ad'].forEach(t=>$('#t-'+t).className=V.tab==t?'on':'');tick()}
+render();
+
+/* Cố định giao diện: không cho phóng to/thu nhỏ */
+['gesturestart','gesturechange','gestureend'].forEach(e=>document.addEventListener(e,x=>x.preventDefault()));
+document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});
+document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
