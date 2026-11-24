@@ -1,6 +1,6 @@
 /* Service worker: lưu sẵn khung ứng dụng, mở được khi mất mạng. Đổi V khi muốn ép làm mới bộ nhớ đệm. */
-const V='lich-truc-v3';
-const ASSETS=['./','index.html','css/style.css','js/lunar.js','js/app.js','js/pwa.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','icons/icon.svg'];
+const V='lich-truc-v5';
+const ASSETS=['./','index.html','css/style.css','js/lunar.js','js/app.js','js/pwa.js','js/cloud.js','js/firebase-config.js','vendor/firebase/firebase-app-compat.js','vendor/firebase/firebase-auth-compat.js','vendor/firebase/firebase-firestore-compat.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','icons/icon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
