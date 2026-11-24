@@ -44,6 +44,16 @@ Mặc định app chạy **chế độ cục bộ** (dữ liệu nằm riêng tr
 
 Khi bật Firebase: ai cũng xem được lịch, chỉ email nằm trong rules mới ghi được (quyền ghi do máy chủ kiểm tra, không chỉ ở giao diện). Dấu chấm cạnh tiêu đề: xanh là đang đồng bộ, cam là ngoại tuyến (hiển thị lịch đã lưu gần nhất). Khi hai quản trị viên sửa cùng lúc, lần lưu sau cùng được giữ lại.
 
+## Hình trang trí
+
+Ứng dụng **không tự vẽ** hình trang trí bằng Canvas, CSS hay ghép hình học. Toàn bộ là tệp minh họa chuyên nghiệp nằm trong `assets/illustrations/` (decor, patterns, logo, icons), nên chạy được khi offline và không tải ảnh từ bên ngoài. Nguồn và giấy phép ghi trong `assets/LICENSES.md`.
+
+Hình được chọn **ngẫu nhiên mỗi lần mở app**, theo ngày đang xem:
+- **Ngày đặc biệt:** Tết Nguyên đán (kèm con giáp của năm), Tết Dương lịch, Trung thu, Vu Lan, Giỗ Tổ, 30/4, 1/5, Quốc khánh, 27/2, 8/3, 20/10, 20/11, 14/2, 1/6, Giáng sinh và các ngày truyền thông y tế (mỗi ngày y tế có hình riêng, ví dụ phổi cho Ngày phòng chống Lao).
+- **Ngày thường:** theo mùa xuân, hạ, thu, đông.
+
+Muốn thêm hoặc thay hình (kể cả ảnh do AI tạo): chép tệp `.webp` hoặc `.png` vào `assets/illustrations/decor/`, thêm tên tệp vào chủ đề tương ứng trong `js/decor.js`, và thêm đường dẫn vào danh sách `ASSETS` trong `sw.js` để dùng được offline.
+
 ## Cài như ứng dụng (PWA)
 
 Sau khi triển khai lên GitHub Pages (https), mở địa chỉ trên điện thoại:
@@ -67,7 +77,9 @@ firestore.rules         Quy tắc bảo mật Firestore
 vendor/firebase/        Firebase SDK 10.14.1 (compat), đóng kèm
 sw.js                   Service worker (chạy offline)
 manifest.webmanifest    Khai báo PWA
-icons/                  Logo (SVG, PNG 192/512, maskable, apple-touch)
+assets/illustrations/   Hình minh họa, logo, họa tiết nền, biểu tượng (chạy offline)
+js/decor.js             Chọn hình trang trí theo mùa và ngày đặc biệt
+assets/LICENSES.md      Nguồn và giấy phép đồ họa
 .github/workflows/      Tự triển khai lên GitHub Pages
 ```
 

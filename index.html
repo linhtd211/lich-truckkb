@@ -9,22 +9,23 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Lịch trực">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="assets/illustrations/logo/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/illustrations/logo/apple-touch-icon.png">
 <link rel="stylesheet" href="css/style.css"></head><body>
 <div id="app"></div>
 <div class="tabs">
-<button id="t-td" onclick="T('td')"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M8 14h4v3H8z"/></svg>Hôm nay</button>
-<button id="t-cal" onclick="T('cal')"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01"/></svg>Lịch tháng</button>
-<button id="t-ev" onclick="T('ev')"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>Sự kiện</button>
-<button id="t-st" onclick="T('st')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Cá nhân</button>
-<button id="t-ad" onclick="T('ad')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>Quản trị</button></div>
+<button id="t-td" onclick="T('td')"><span class="ti-ic i-td"></span>Hôm nay</button>
+<button id="t-cal" onclick="T('cal')"><span class="ti-ic i-cal"></span>Lịch tháng</button>
+<button id="t-ev" onclick="T('ev')"><span class="ti-ic i-ev"></span>Sự kiện</button>
+<button id="t-st" onclick="T('st')"><span class="ti-ic i-st"></span>Cá nhân</button>
+<button id="t-ad" onclick="T('ad')"><span class="ti-ic i-ad"></span>Quản trị</button></div>
 <div id="ov"></div>
 <script src="vendor/firebase/firebase-app-compat.js"></script>
 <script src="vendor/firebase/firebase-auth-compat.js"></script>
 <script src="vendor/firebase/firebase-firestore-compat.js"></script>
 <script src="js/firebase-config.js"></script>
 <script src="js/lunar.js"></script>
+<script src="js/decor.js"></script>
 <script src="js/app.js"></script>
 <script src="js/cloud.js"></script>
 <script src="js/pwa.js"></script></body></html>
