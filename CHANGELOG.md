@@ -1,3 +1,11 @@
+# Visual 2.1.4
+
+- Thiết kế lại bảng Chi tiết ca trực. Hiển thị tên và màu nhận diện người trực, ca liền trước và ca liền sau có thể chạm để xem, cùng sự kiện trong ngày nếu có.
+
+# Visual 2.1.3
+
+- Hiển thị đủ tên gọi trong ô Lịch tháng. Giảm đệm ngang để tên có thêm chỗ và cho phép xuống dòng khi ô hẹp.
+
 # Visual 2.1.2
 
 - Sửa trực tiếp họ tên cán bộ trong danh sách trực của phần Quản trị. Tên mới hiển thị trên các ca của cùng cán bộ.

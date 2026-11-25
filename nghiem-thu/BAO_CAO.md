@@ -1,6 +1,10 @@
-# Báo cáo kiểm thử Lịch Trực KCB Visual 2.1.2
+# Báo cáo kiểm thử Lịch Trực KCB Visual 2.1.4
 
 ## Kết quả
+
+- Đã kiểm tra bảng Chi tiết ca trực, ca liền trước và sau, ca đã đổi, nút chuyển trang ngày và thao tác dành cho quản trị viên.
+
+- Nhãn tên ở ô Lịch tháng dùng đệm ngang nhỏ hơn. CSS cho phép xuống dòng khi tên vượt chiều rộng, giữ lưới 7 cột và màu nhận diện của cán bộ.
 
 - Kiểm tra mở ô sửa tên, từ chối tên chỉ có khoảng trắng, lưu tên mới, mở lại dữ liệu, hiển thị trên ca trước và sau ngày áp dụng, và giữ nguyên ID cán bộ, vòng trực, các ca đã đổi và nhật ký lưu. Mục Nhật ký đổi lịch đã được bỏ khỏi giao diện Quản trị.
 

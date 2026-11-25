@@ -176,6 +176,27 @@ check('Mã hiển thị chuyển ngày, tab Sự kiện, lịch tháng và thố
   run("T('st')");
   assert.match(nodes.get('#app').innerHTML,/class="bar"/);
 });
+check('Chi tiết ca trực, điều hướng liền kề và quyền quản trị',()=>{
+  const preview=application();
+  const {run: act,nodes: ui}=preview;
+  const modal=()=>ui.get('#ov').innerHTML;
+  act("setSel(2026,10,25);T('td');S.sw['2026-11-24']=0;openDay('2026-11-25')");
+  assert.match(modal(),/Chi tiết ca trực/);
+  assert.match(modal(),/Ca trước<[/]small><strong>24[/]11 · BS. Nguyễn Văn An/);
+  assert.match(modal(),/Ca sau<[/]small><strong>26[/]11 ·/);
+  assert.doesNotMatch(modal(),/Xem trang ngày|Sự kiện trong ngày|Hoán đổi hai ngày trực/);
+  act("openDay('2026-11-24')");
+  assert.match(modal(),/Đã đổi ca/);
+  assert.match(modal(),/Sự kiện trong ngày/);
+  assert.match(modal(),/Xem trang ngày/);
+  assert.equal(act('key(...V.sel)'), '2026-11-25');
+  act("T('cal');openDay('2026-12-31')");
+  assert.match(modal(),/onclick="openDay\('2027-01-01'\)"/);
+  assert.match(modal(),/Xem trang ngày/);
+  act("ADM=true;openDay('2026-12-31')");
+  assert.match(modal(),/Hoán đổi hai ngày trực/);
+  assert.match(modal(),/Chỉ định/);
+});
 check('Xếp vòng, thêm cán bộ, đổi ca, chỉ định và dữ liệu cũ',()=>{
   run("S.ph=pinHash('9114');save();T('ad')");
   assert.match(nodes.get('#app').innerHTML,/Đăng nhập quản trị/);
@@ -356,7 +377,7 @@ async function workerChecks(){
 workerChecks().then(()=>{
   if (process.argv.includes('--manifest')) {
     fs.writeFileSync(path.join(root,'asset-manifest.json'),
-      JSON.stringify({version:'2.1.2',themes:registry,solarTerms:termIcons},null,2)+'\n');
+      JSON.stringify({version:'2.1.4',themes:registry,solarTerms:termIcons},null,2)+'\n');
   }
   if (process.argv.includes('--report')) {
     fs.writeFileSync(path.join(__dirname,'ket-qua.json'),JSON.stringify({tests,themeDates:resultDays},null,2)+'\n');

@@ -259,7 +259,7 @@ body::before { background: #13744a; }
   .top { padding-inline:8px; gap:5px; }
   .pill { padding-inline:8px; font-size:12px; }
   .c { padding-inline:1px; border-radius:8px; }
-  .c .n { padding-inline:2px; }
+  .c .n { padding-inline:1px; font-size:9px; }
   .lg { gap:6px; font-size:10.5px; }
   .i3 { padding-inline:4px; }
 }
@@ -287,3 +287,62 @@ body::before { background: #13744a; }
   height: 33%;
   mask-image: linear-gradient(transparent,#000 30%);
 }
+
+.shift-sheet {
+  display: grid;
+  gap: 16px;
+  overscroll-behavior: contain;
+  max-height: 88dvh;
+}
+.shift-heading, .shift-duty, .shift-neighbor {
+  display: flex;
+  align-items: center;
+}
+.shift-heading { justify-content: space-between; }
+.shift-heading h3, .shift-date { margin: 0; font-size: 1.18rem; font-weight: 750; }
+.shift-close {
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--mut);
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+}
+.shift-duty {
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: #edf2e6;
+}
+.shift-duty img { flex: none; }
+.shift-name {
+  display: inline-block;
+  max-width: 100%;
+  margin: 4px 4px 0 0;
+  padding: 4px 8px;
+  border-radius: 9px;
+  color: #222b25;
+  overflow-wrap: anywhere;
+}
+.shift-sheet h4 { margin: 0 0 8px; }
+.shift-neighbors { display: grid; gap: 8px; }
+.shift-neighbor {
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 13px;
+  background: #f0f4ef;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+}
+.shift-neighbor small { display: block; color: var(--mut); }
+.shift-neighbor strong { display: block; overflow-wrap: anywhere; }
+.shift-neighbor > span:first-child { min-width: 0; }
+.shift-chevron { flex: none; color: var(--mut); font-size: 1.5rem; }
+.shift-events { list-style: none; margin: 0; padding: 0; }
+.shift-events li { display: flex; align-items: center; gap: 8px; padding: 4px 0; overflow-wrap: anywhere; }
+.shift-admin > label:not(:first-of-type) { display: block; margin-top: 10px; }

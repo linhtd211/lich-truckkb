@@ -168,11 +168,67 @@ function evV(){
 function addEv(){const t=$('#et').value.trim(),d=$('#ed').value;if(!t||!d)return toast('Nhập tên hoạt động và ngày');S.ev.push({id:Date.now(),t,d,h:$('#eh').value,p:$('#ep').value.trim(),k:$('#ek').value});save();render();toast('Đã thêm hoạt động')}
 function delEv(id){S.ev=S.ev.filter(e=>e.id!==id);save();render()}
 const evCard=()=>`<div class="card"><h3>Hoạt động của khoa</h3><p class="mut sm">Họp giao ban, tiêm chủng, khám sàng lọc, tập huấn... hiển thị cho mọi người ở tab Sự kiện.</p><input id="et" placeholder="Tên hoạt động"><input type="date" id="ed" value="${tk()}"><input type="time" id="eh"><input id="ep" placeholder="Địa điểm (không bắt buộc)"><select id="ek">${Object.keys(EK).map(k=>`<option value="${k}">${EK[k][0]}</option>`).join('')}</select><button class="btn" onclick="addEv()">Thêm hoạt động</button>`+S.ev.slice().sort((x,y)=>x.d<y.d?-1:1).filter(e=>e.d>=tk()).slice(0,20).map(e=>`<div class="row"><div class="grow sm"><b>${esc(e.t)}</b><div class="mut">${fmt(e.d)}${e.h?' · '+e.h:''}${e.p?' · '+esc(e.p):''}</div></div><button class="sbtn" onclick="delEv(${e.id})">✕</button></div>`).join('')+'</div>';
-function openDay(k){const a=P(k),dt=new Date(a[0],a[1]-1,a[2]),l=lunar(a[2],a[1],a[0]),p=dutyK(k),artTheme=visualsOn(a[2],a[1],a[0]).theme;
-let h=`<div class="ov" onclick="if(event.target==this)CL()"><div class="sh"><h3>${WD[dt.getDay()]}, ${a[2]}/${a[1]}/${a[0]}</h3><div class="sm mut">Âm lịch ${l[0]}/${l[1]}${l[3]?' (nhuận)':''} năm ${yc(l[2])}</div>${evts(a[2],a[1],a[0]).map(e=>`<div class="sm" style="margin-top:4px">${EventIcon(e.i)} ${esc(e.n)}${e.leave?' · '+esc(LEAVE_LABELS[e.leave]):''}${e.h?' · '+esc(e.h):''}${e.p?' · '+esc(e.p):''}</div>`).join('')}
-<div class="card" style="margin:12px 0"><div class="mut sm">Người trực</div><b style="font-size:18px">${p?esc(p.name):'Chưa có'}</b>${S.sw[k]!=null?' <span class="tag">đã đổi</span>':''}</div><button class="btn o" onclick="setSel(${a[0]},${a[1]-1},${a[2]});V.tab='td';CL();render()">Xem trang ngày</button>`;
-if(ADM)h+=`<div class="sm mut" style="margin-top:10px">Đổi trực với ngày</div><input type="date" id="sd"><button class="btn o" onclick="swap('${k}')">Hoán đổi hai ngày trực</button><div class="sm mut" style="margin-top:10px">Hoặc chỉ định người khác trực</div><select id="sp">${cur().map(byId).map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select><button class="btn o" onclick="assign('${k}')">Chỉ định</button>`;
-$('#ov').innerHTML=h+(artTheme.source==='heritage'?'<a class="day-credits sm" href="ASSET_SOURCES.md">Nguồn minh họa</a>':'')+`<button class="btn" style="margin-top:10px" onclick="CL()">Đóng</button></div></div>`}
+function openDay(k) {
+  const [y,m,d]=P(k);
+  const dt=new Date(y,m-1,d);
+  const l=lunar(d,m,y);
+  const p=dutyK(k);
+  const events=evts(d,m,y);
+  const artTheme=visualsOn(d,m,y).theme;
+  const nearby=[[-1,'Ca trước'],[1,'Ca sau']].map(([offset,label])=>{
+    const date=new Date(y,m-1,d+offset);
+    const day=date.getDate(),month=date.getMonth();
+    const dayKey=key(date.getFullYear(),month,day);
+    const staff=dutyK(dayKey);
+    return `<button class="shift-neighbor" type="button" onclick="openDay('${dayKey}')">
+      <span><small>${label}</small><strong>${day}/${month+1} · ${staff?esc(staff.name):'Chưa có người trực'}</strong></span>
+      <span class="shift-chevron" aria-hidden="true">›</span>
+    </button>`;
+  }).join('');
+
+  const actions=ADM?`<section class="shift-admin" aria-labelledby="shift-admin-title">
+    <h4 id="shift-admin-title">Quản lý ca</h4>
+    <label class="sm mut" for="sd">Đổi trực với ngày</label>
+    <input type="date" id="sd">
+    <button class="btn o" onclick="swap('${k}')">Hoán đổi hai ngày trực</button>
+    <label class="sm mut" for="sp">Chỉ định người khác trực</label>
+    <select id="sp">${cur().map(byId).map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select>
+    <button class="btn o" onclick="assign('${k}')">Chỉ định</button>
+  </section>`:'';
+
+  $('#ov').innerHTML=`<div class="ov" onclick="if(event.target===this)CL()">
+    <div class="sh shift-sheet" role="dialog" aria-modal="true" aria-labelledby="shift-title" onkeydown="if(event.key==='Escape')CL()">
+      <div class="shift-heading">
+        <h3 id="shift-title">Chi tiết ca trực</h3>
+        <button class="shift-close" id="shift-close" type="button" aria-label="Đóng chi tiết ca trực" onclick="CL()">×</button>
+      </div>
+      <div>
+        <p class="shift-date">${WD[dt.getDay()]}, ${d}/${m}/${y}</p>
+        <div class="sm mut">Âm lịch ${l[0]}/${l[1]}${l[3]?' (nhuận)':''} · ${yc(l[2])}</div>
+      </div>
+      <div class="shift-duty">
+        ${EventIcon('stethoscope')}
+        <div class="grow">
+          <div class="sm mut">Người trực</div>
+          ${p?`<strong class="shift-name" style="background:${col(p)}">${esc(p.name)}</strong>`:'<strong>Chưa có người trực</strong>'}
+          ${S.sw[k]!=null?'<span class="tag">Đã đổi ca</span>':''}
+        </div>
+      </div>
+      <section aria-labelledby="shift-nearby-title">
+        <h4 id="shift-nearby-title">Ca liền kề</h4>
+        <div class="shift-neighbors">${nearby}</div>
+      </section>
+      ${events.length?`<section aria-labelledby="shift-events-title"><h4 id="shift-events-title">Sự kiện trong ngày</h4>
+        <ul class="shift-events">${events.map(e=>`<li>${EventIcon(e.i)}<span>${[e.n,e.leave&&LEAVE_LABELS[e.leave],e.h,e.p].filter(Boolean).map(esc).join(' · ')}</span></li>`).join('')}</ul>
+      </section>`:''}
+      ${actions}
+      ${artTheme.source==='heritage'?'<a class="day-credits sm" href="ASSET_SOURCES.md">Nguồn minh họa</a>':''}
+      ${V.tab==='td'&&key(...V.sel)===k?'':`<button class="btn o" onclick="setSel(${y},${m-1},${d});V.tab='td';CL();render()">Xem trang ngày</button>`}
+      <button class="btn" type="button" onclick="CL()">Đóng</button>
+    </div>
+  </div>`;
+  $('#shift-close').focus();
+}
 const CL=()=>$('#ov').innerHTML='';
 function swap(a){const b=$('#sd').value;if(!b||b==a)return toast('Hãy chọn ngày khác để đổi');const pa=dutyK(a),pb=dutyK(b);if(!pa||!pb)return;S.sw[a]=pb.id;S.sw[b]=pa.id;S.log.unshift({t:a+' ⇄ '+b,x:pa.name+' ⇄ '+pb.name});S.log=S.log.slice(0,30);save();CL();render();toast('Đã đổi lịch trực')}
 function assign(a){const id=+$('#sp').value;S.sw[a]=id;S.log.unshift({t:a,x:'Chỉ định: '+byId(id).name});S.log=S.log.slice(0,30);save();CL();render();toast('Đã cập nhật')}
