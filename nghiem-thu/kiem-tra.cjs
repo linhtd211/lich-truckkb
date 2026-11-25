@@ -176,6 +176,16 @@ check('Mã hiển thị chuyển ngày, tab Sự kiện, lịch tháng và thố
   run("T('st')");
   assert.match(nodes.get('#app').innerHTML,/class="bar"/);
 });
+check('Lịch tháng hiện chức danh và tên riêng, chi tiết giữ nguyên tên đã lưu',()=>{
+  const preview=application();
+  const {run: act,nodes: ui}=preview;
+  act("setSel(2026,10,25);S.staff[0].name='BS.Hoàng';S.staff[1].name='ĐD. Diệp';S.staff[2].name='Nguyễn Thị Huế';S.staff[3].name='YS Linh';S.sw['2026-11-25']=0;T('cal')");
+  for (const [role,name] of [['BS','Hoàng'],['ĐD','Diệp'],['','Huế'],['YS','Linh']]) {
+    assert.match(ui.get('#app').innerHTML,new RegExp(`class="month-duty-role">${role}</span>\\s*<span class="month-duty-name">${name}</span>`));
+  }
+  act("openDay('2026-11-25')");
+  assert.match(ui.get('#ov').innerHTML,/>BS.Hoàng<\/strong>/);
+});
 check('Chi tiết ca trực, điều hướng liền kề và quyền quản trị',()=>{
   const preview=application();
   const {run: act,nodes: ui}=preview;
@@ -377,7 +387,7 @@ async function workerChecks(){
 workerChecks().then(()=>{
   if (process.argv.includes('--manifest')) {
     fs.writeFileSync(path.join(root,'asset-manifest.json'),
-      JSON.stringify({version:'2.1.4',themes:registry,solarTerms:termIcons},null,2)+'\n');
+      JSON.stringify({version:'2.1.6',themes:registry,solarTerms:termIcons},null,2)+'\n');
   }
   if (process.argv.includes('--report')) {
     fs.writeFileSync(path.join(__dirname,'ket-qua.json'),JSON.stringify({tests,themeDates:resultDays},null,2)+'\n');

@@ -1,3 +1,11 @@
+# Visual 2.1.6
+
+- Lịch tháng dùng dải màu phủ ngang ô ngày. Chức danh nằm trên tên gọi in đậm. Cỡ chữ tự thay đổi theo chiều rộng ô và tên hiển thị trên một dòng.
+
+# Visual 2.1.5
+
+- Lịch tháng bỏ tiền tố chức danh trên nhãn và giữ tên gọi trên một dòng. Chi tiết ca trực giữ đầy đủ tên đã lưu.
+
 # Visual 2.1.4
 
 - Thiết kế lại bảng Chi tiết ca trực. Hiển thị tên và màu nhận diện người trực, ca liền trước và ca liền sau có thể chạm để xem, cùng sự kiện trong ngày nếu có.

@@ -84,11 +84,21 @@ function tdV() {
 }
 function tick(){const e=$('#clk');if(!e)return;const n=new Date();e.textContent=pad(n.getHours())+':'+pad(n.getMinutes());$('#gh').textContent='Giờ '+CHI[INT((n.getHours()+1)/2)%12]}
 setInterval(tick,20000);
+function monthDuty(person) {
+  const fullName = person.name.trim();
+  const match = fullName.match(/^((?:(?:BS|YS|ĐD|KTV|DS|HS|CN|CKI|CKII|ThS|TS)(?:\s*\.\s*|\s+))+)(\S.*)$/iu);
+  const role = match ? match[1].replace(/[.\s]+/g, ' ').trim() : '';
+  const name = sn(match ? match[2] : fullName);
+  return `<span class="month-duty" title="${esc(person.name)}" style="background:${col(person)}">
+    <span class="month-duty-role">${esc(role)}</span>
+    <span class="month-duty-name">${esc(name)}</span>
+  </span>`;
+}
 function calV(){const y=V.y,m=V.m,fd=(new Date(y,m,1).getDay()+6)%7,dim=new Date(y,m+1,0).getDate(),now=new Date(),ty=now.getFullYear(),tm=now.getMonth(),td=now.getDate();
-let h=`<div class="card">${nav()}${chips()}<div class="g">`+['T2','T3','T4','T5','T6','T7','CN'].map((x,i)=>`<div class="w ${i==6?'cn':''}">${x}</div>`).join('');
+let h=`<div class="card month-card">${nav()}${chips()}<div class="g">`+['T2','T3','T4','T5','T6','T7','CN'].map((x,i)=>`<div class="w ${i==6?'cn':''}">${x}</div>`).join('');
 for(let i=0;i<fd;i++)h+='<div class="c e"></div>';
 for(let d=1;d<=dim;d++){const l=lunar(d,m+1,y),hs=hol(d,m+1,y),off=hs.some(x=>x[1]),otherOff=hs.some(x=>x[1]&&x[2]!=='paid')&&!hs.some(x=>x[2]==='paid'),p=duty(y,m,d),wd=(fd+d-1)%7,isT=y==ty&&m==tm&&d==td;
-h+=`<button class="c ${wd==6?'cn':''} ${off?(otherOff?'other-off':'off'):''} ${isT?'td':''} ${V.f!=null&&p&&p.id!==V.f?'dm':''}" onclick="openDay('${key(y,m,d)}')"><span class="d">${d}</span><span class="l ${l[0]===1||l[0]===15?'lunar-key':''}">${l[0]==1?l[0]+'/'+l[1]:l[0]}</span>${hs.length?`<i class="${off?(otherOff?'other':''):'s'}"></i>`:''}${S.ev.some(e=>e.d===key(y,m,d))?'<i class="e2"></i>':''}${p?`<span class="n" style="background:${col(p)}">${esc(sn(p.name))}</span>`:''}</button>`}
+h+=`<button class="c ${wd==6?'cn':''} ${off?(otherOff?'other-off':'off'):''} ${isT?'td':''} ${V.f!=null&&p&&p.id!==V.f?'dm':''}" onclick="openDay('${key(y,m,d)}')" aria-label="${d}/${m+1}/${y}, âm lịch ${l[0]}/${l[1]}${p?', người trực '+esc(p.name):''}"><span class="d">${d}</span><span class="l ${l[0]===1||l[0]===15?'lunar-key':''}">${l[0]==1?l[0]+'/'+l[1]:l[0]}</span>${hs.length?`<i class="${off?(otherOff?'other':''):'s'}"></i>`:''}${S.ev.some(e=>e.d===key(y,m,d))?'<i class="e2"></i>':''}${p?monthDuty(p):''}</button>`}
 return h+`</div><div class="lg"><span>Nghỉ lễ</span><span class="other">Nghỉ bù, hoán đổi</span><span class="s">Kỷ niệm, lễ truyền thống</span></div></div>`}
 /* Ngày lễ, ngày y tế, âm lịch, tiết khí và các hoạt động của khoa. */
 const EK = {

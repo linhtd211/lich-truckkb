@@ -30,20 +30,35 @@ body:before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-
 .ib{width:38px;height:38px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:18px}
 .chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px}.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px}.chip.on{background:var(--pri);border-color:var(--pri);color:#fff}
 .g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.w{text-align:center;font-size:12px;color:var(--mut);padding:4px 0}.w.cn{color:var(--red)}
-.c{min-height:66px;border-radius:14px;padding:4px 3px;background:var(--soft);border:1.5px solid transparent;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;font:inherit;color:inherit}
+.month-card .g { margin-inline: -5px; }
+.c{min-height:70px;border-radius:14px;padding:4px 0 0;background:var(--soft);border:0;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;font:inherit;color:inherit;container-type:inline-size}
 .c .d{font-size:16px;font-weight:600}.c .l{font-size:10px;color:var(--mut)}.c.cn .d,.c.off .d{color:var(--red)}
 .c.td{background:var(--pri);color:#fff}.c.td .d,.c.td .l{color:#fff}.c.dm{opacity:.28}.c.e{visibility:hidden}
-.c .n {
+.month-duty {
   margin-top: auto;
-  max-width: 100%;
-  padding: 2px 2px;
-  border-radius: 8px;
+  width: 100%;
+  padding: 3px 1px 4px;
+  border-end-start-radius: inherit;
+  border-end-end-radius: inherit;
   color: #2b1d17;
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 1.2;
-  white-space: normal;
-  overflow-wrap: anywhere;
+}
+.month-duty-role,
+.month-duty-name {
+  display: block;
+  min-height: 1.25em;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.month-duty-role {
+  font-size: clamp(8.5px, 2.15vw, 11px);
+  font-size: clamp(8.5px, 17cqi + 2.5px, 11px);
+}
+.month-duty-name {
+  font-size: clamp(11px, 2.75vw, 14px);
+  font-size: clamp(11px, 17cqi + 4px, 14px);
+  font-weight: 700;
 }
 .c i{position:absolute;top:4px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--red)}.c i.s{background:var(--or)}
 .lg{display:flex;gap:14px;font-size:12px;color:var(--mut);margin-top:10px;flex-wrap:wrap}.lg span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:5px}.lg .s:before{background:var(--or)}

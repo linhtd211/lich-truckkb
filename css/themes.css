@@ -258,8 +258,11 @@ body::before { background: #13744a; }
   .visual-21 .ar { margin:0 2px; }
   .top { padding-inline:8px; gap:5px; }
   .pill { padding-inline:8px; font-size:12px; }
-  .c { padding-inline:1px; border-radius:8px; }
-  .c .n { padding-inline:1px; font-size:9px; }
+  .month-card { padding-inline:10px; }
+  .month-card .g { gap:2px; margin-inline:-9px; }
+  .month-duty { padding-inline:.5px; }
+  .month-duty-name { letter-spacing:-.2px; }
+  .c { border-radius:8px; }
   .lg { gap:6px; font-size:10.5px; }
   .i3 { padding-inline:4px; }
 }
