@@ -2,7 +2,7 @@
 const APP_SCOPE = self.registration.scope;
 const scopeURL = file => new URL(file, APP_SCOPE).href;
 const CACHE_PREFIX = 'lich-truc-kcb:' + APP_SCOPE + ':';
-const SHELL = CACHE_PREFIX + 'visual-2.1.6-shell';
+const SHELL = CACHE_PREFIX + 'visual-2.1.7-shell';
 const MEDIA = CACHE_PREFIX + 'visual-2.1.1-media';
 const MEDIA_LIMIT = 144;
 const INDEX = scopeURL('index.html');
@@ -19,7 +19,10 @@ const CORE = [
   'assets/illustrations/logo/apple-touch-icon.png', 'assets/illustrations/logo/maskable-512.png',
   'assets/illustrations/icons/calendar-check.svg', 'assets/illustrations/icons/calendar-days.svg',
   'assets/illustrations/icons/settings.svg', 'assets/illustrations/icons/sparkles.svg',
-  'assets/illustrations/icons/user-round.svg', 'assets/illustrations/decor/memo.webp',
+  'assets/illustrations/icons/user-round.svg',
+  'assets/illustrations/menu/hom-nay.png', 'assets/illustrations/menu/lich-thang.png',
+  'assets/illustrations/menu/su-kien.png', 'assets/illustrations/menu/ca-nhan.png',
+  'assets/illustrations/menu/quan-tri.png', 'assets/illustrations/decor/memo.webp',
   'assets/illustrations/decor/stethoscope.webp', 'assets/illustrations/seasonal/xuan.webp',
   'assets/illustrations/seasonal/ha.webp', 'assets/illustrations/themes/thu.webp',
   'assets/illustrations/seasonal/dong.webp'

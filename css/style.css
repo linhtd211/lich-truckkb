@@ -68,8 +68,32 @@ body:before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-
 input,select{width:100%;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;margin:4px 0 8px}
 .btn{width:100%;padding:11px;border:0;border-radius:14px;background:var(--pri);color:#fff;font:inherit;font-weight:600}.btn.o{background:var(--soft);color:var(--ink)}
 .sbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:4px 9px}h3{margin:0 0 8px;font-size:15px}
-.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:1px solid var(--line)}
-.tabs button{flex:1;max-width:100px;border:0;background:none;color:var(--mut);padding:4px;font:inherit;font-size:11.5px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.tabs {
+  position: fixed;
+  inset: auto 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  max-width: 520px;
+  margin-inline: auto;
+  padding: 5px 3px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 19px;
+}
+.tabs button {
+  flex: 1 1 0;
+  border: 0;
+  background: none;
+  color: var(--mut);
+  padding: 2px 1px;
+  font: inherit;
+  font-size: clamp(10.5px, 3vw, 11.5px);
+  line-height: 1.25;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
 .tabs button.on{color:var(--pri);font-weight:600}
 .ov{position:fixed;inset:0;background:rgba(10,25,15,.5);display:flex;align-items:flex-end;justify-content:center;z-index:12}
 .sh{width:100%;max-width:520px;background:var(--card);border-radius:28px 28px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto}
@@ -81,7 +105,6 @@ button,input,select{touch-action:manipulation}
 input,select{-webkit-user-select:text;user-select:text;font-size:16px}
 .sd{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;background:#9df0bf;vertical-align:middle}.sd.off{background:#ffb74d}
 
-.tabs:after{content:"";position:absolute;left:0;right:0;top:100%;height:240px;background:var(--card)}
 .sup{margin-top:12px;border-radius:24px;padding:16px;color:#fff;background:linear-gradient(135deg,#22a865,#0f8049);position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(15,128,73,.25)}
 
 .sup small{opacity:.92;font-size:12.5px;position:relative}.sup h2{margin:2px 0 4px;font-size:20px;position:relative}.sup .cd{font-size:34px;font-weight:800;line-height:1.1;position:relative}.sup .cd span{font-size:14px;font-weight:600;margin-left:6px}
@@ -104,8 +127,25 @@ html{background-size:180px}
 .dcs{position:absolute;right:10px;top:8px;width:84px;transform:rotate(6deg);pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
 .emp{display:block;width:120px;margin:0 auto 6px}
 .art{margin:20px -12px 0}.art .ai{display:flex;justify-content:center;align-items:flex-end;gap:8px}.art img{width:64px;-webkit-user-drag:none}.art img.big{width:104px}.art p{margin:6px 0 0;text-align:center;font-size:12px;color:var(--mut)}
-.tabs .ti-ic{width:24px;height:24px;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
-.i-td{--m:url(../assets/illustrations/icons/calendar-check.svg)}.i-cal{--m:url(../assets/illustrations/icons/calendar-days.svg)}.i-ev{--m:url(../assets/illustrations/icons/sparkles.svg)}.i-st{--m:url(../assets/illustrations/icons/user-round.svg)}.i-ad{--m:url(../assets/illustrations/icons/settings.svg)}
+.tabs .ti-ic {
+  width: 50px;
+  max-width: 100%;
+  height: 36px;
+  border-radius: 14px;
+  background: var(--tab-icon) center / var(--tab-icon-size, 29px) no-repeat;
+}
+.tabs button.on .ti-ic { background-color: #e6f5ed; }
+.i-td { --tab-icon: url(../assets/illustrations/menu/hom-nay.png); }
+.i-cal {
+  --tab-icon: url(../assets/illustrations/menu/lich-thang.png);
+  --tab-icon-size: 35px;
+}
+.i-ev { --tab-icon: url(../assets/illustrations/menu/su-kien.png); }
+.i-st {
+  --tab-icon: url(../assets/illustrations/menu/ca-nhan.png);
+  --tab-icon-size: 30px;
+}
+.i-ad { --tab-icon: url(../assets/illustrations/menu/quan-tri.png); }
 
 /* Visual Engine 2.0 — artwork is a dedicated composition, never an arbitrary crop. */
 .visual-paper{isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 16px 22px;background:#fffdf8;}
