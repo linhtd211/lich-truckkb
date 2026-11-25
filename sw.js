@@ -1,7 +1,87 @@
-/* Service worker: lưu sẵn khung ứng dụng, mở được khi mất mạng. Đổi V khi muốn ép làm mới bộ nhớ đệm. */
-const V='lich-truc-visual-v7';
-const ASSETS=["assets/illustrations/seasonal/xuan.webp", "assets/illustrations/seasonal/ha.webp", "assets/illustrations/seasonal/thu.webp", "assets/illustrations/seasonal/dong.webp", "assets/illustrations/seasonal/thaythuoc.webp", "assets/illustrations/seasonal/quockhanh.webp"].concat(["./", "index.html", "css/style.css", "js/lunar.js", "js/decor.js", "js/app.js", "js/pwa.js", "js/cloud.js", "js/firebase-config.js", "manifest.webmanifest", "vendor/firebase/firebase-app-compat.js", "vendor/firebase/firebase-auth-compat.js", "vendor/firebase/firebase-firestore-compat.js", "assets/illustrations/decor/adhesive-bandage.webp", "assets/illustrations/decor/anatomical-heart.webp", "assets/illustrations/decor/baby-bottle.webp", "assets/illustrations/decor/balloon.webp", "assets/illustrations/decor/bell.webp", "assets/illustrations/decor/blossom.webp", "assets/illustrations/decor/books.webp", "assets/illustrations/decor/bouquet.webp", "assets/illustrations/decor/brain.webp", "assets/illustrations/decor/butterfly.webp", "assets/illustrations/decor/candle.webp", "assets/illustrations/decor/cat.webp", "assets/illustrations/decor/cherry-blossom.webp", "assets/illustrations/decor/chestnut.webp", "assets/illustrations/decor/christmas-tree.webp", "assets/illustrations/decor/cityscape-at-dusk.webp", "assets/illustrations/decor/clinking-glasses.webp", "assets/illustrations/decor/confetti-ball.webp", "assets/illustrations/decor/construction-worker.webp", "assets/illustrations/decor/crescent-moon.webp", "assets/illustrations/decor/dog.webp", "assets/illustrations/decor/dove.webp", "assets/illustrations/decor/dragon.webp", "assets/illustrations/decor/drop-of-blood.webp", "assets/illustrations/decor/fallen-leaf.webp", "assets/illustrations/decor/firecracker.webp", "assets/illustrations/decor/fireworks.webp", "assets/illustrations/decor/folded-hands.webp", "assets/illustrations/decor/full-moon.webp", "assets/illustrations/decor/gear.webp", "assets/illustrations/decor/goat.webp", "assets/illustrations/decor/graduation-cap.webp", "assets/illustrations/decor/hammer-and-wrench.webp", "assets/illustrations/decor/handshake.webp", "assets/illustrations/decor/health-worker.webp", "assets/illustrations/decor/heart-with-ribbon.webp", "assets/illustrations/decor/herb.webp", "assets/illustrations/decor/hibiscus.webp", "assets/illustrations/decor/horse.webp", "assets/illustrations/decor/hospital.webp", "assets/illustrations/decor/hot-beverage.webp", "assets/illustrations/decor/kite.webp", "assets/illustrations/decor/leaf-fluttering-in-wind.webp", "assets/illustrations/decor/lotus.webp", "assets/illustrations/decor/love-letter.webp", "assets/illustrations/decor/lungs.webp", "assets/illustrations/decor/maple-leaf.webp", "assets/illustrations/decor/memo.webp", "assets/illustrations/decor/microbe.webp", "assets/illustrations/decor/monkey.webp", "assets/illustrations/decor/moon-cake.webp", "assets/illustrations/decor/mosquito.webp", "assets/illustrations/decor/mountain.webp", "assets/illustrations/decor/national-park.webp", "assets/illustrations/decor/night-with-stars.webp", "assets/illustrations/decor/no-smoking.webp", "assets/illustrations/decor/open-book.webp", "assets/illustrations/decor/ox.webp", "assets/illustrations/decor/palm-tree.webp", "assets/illustrations/decor/party-popper.webp", "assets/illustrations/decor/peach.webp", "assets/illustrations/decor/pig.webp", "assets/illustrations/decor/pill.webp", "assets/illustrations/decor/pine-decoration.webp", "assets/illustrations/decor/rainbow.webp", "assets/illustrations/decor/rat.webp", "assets/illustrations/decor/red-envelope.webp", "assets/illustrations/decor/red-heart.webp", "assets/illustrations/decor/red-paper-lantern.webp", "assets/illustrations/decor/reminder-ribbon.webp", "assets/illustrations/decor/rooster.webp", "assets/illustrations/decor/rose.webp", "assets/illustrations/decor/santa-claus.webp", "assets/illustrations/decor/scarf.webp", "assets/illustrations/decor/seedling.webp", "assets/illustrations/decor/sheaf-of-rice.webp", "assets/illustrations/decor/snake.webp", "assets/illustrations/decor/snowflake.webp", "assets/illustrations/decor/soap.webp", "assets/illustrations/decor/sparkles.webp", "assets/illustrations/decor/star.webp", "assets/illustrations/decor/stethoscope.webp", "assets/illustrations/decor/sun.webp", "assets/illustrations/decor/sunflower.webp", "assets/illustrations/decor/sunrise-over-mountains.webp", "assets/illustrations/decor/sunrise.webp", "assets/illustrations/decor/syringe.webp", "assets/illustrations/decor/tangerine.webp", "assets/illustrations/decor/teacher.webp", "assets/illustrations/decor/teddy-bear.webp", "assets/illustrations/decor/thermometer.webp", "assets/illustrations/decor/tiger.webp", "assets/illustrations/decor/trophy.webp", "assets/illustrations/decor/tulip.webp", "assets/illustrations/decor/watermelon.webp", "assets/illustrations/decor/wrapped-gift.webp", "assets/illustrations/patterns/dong.webp", "assets/illustrations/patterns/giangsinh.webp", "assets/illustrations/patterns/ha.webp", "assets/illustrations/patterns/hungvuong.webp", "assets/illustrations/patterns/laodong.webp", "assets/illustrations/patterns/nhagiao.webp", "assets/illustrations/patterns/phunu.webp", "assets/illustrations/patterns/quockhanh.webp", "assets/illustrations/patterns/tet.webp", "assets/illustrations/patterns/tetduong.webp", "assets/illustrations/patterns/thaythuoc.webp", "assets/illustrations/patterns/thieunhi.webp", "assets/illustrations/patterns/thu.webp", "assets/illustrations/patterns/trungthu.webp", "assets/illustrations/patterns/valentine.webp", "assets/illustrations/patterns/vulan.webp", "assets/illustrations/patterns/xuan.webp", "assets/illustrations/patterns/yte.webp", "assets/illustrations/logo/apple-touch-icon.png", "assets/illustrations/logo/icon-192.png", "assets/illustrations/logo/icon-512.png", "assets/illustrations/logo/maskable-512.png", "assets/illustrations/icons/calendar-check.svg", "assets/illustrations/icons/calendar-days.svg", "assets/illustrations/icons/settings.svg", "assets/illustrations/icons/sparkles.svg", "assets/illustrations/icons/user-round.svg"]);
-self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()))});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
-self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
-e.respondWith(caches.match(r).then(hit=>{const net=fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(V).then(c=>c.put(r,cp))}return res}).catch(()=>hit||caches.match('index.html'));return hit||net}))});
+/* Bộ nhớ đệm riêng cho từng đường dẫn GitHub Pages. */
+const APP_SCOPE = self.registration.scope;
+const scopeURL = file => new URL(file, APP_SCOPE).href;
+const CACHE_PREFIX = 'lich-truc-kcb:' + APP_SCOPE + ':';
+const SHELL = CACHE_PREFIX + 'visual-2.1.1-shell';
+const MEDIA = CACHE_PREFIX + 'visual-2.1.1-media';
+const MEDIA_LIMIT = 144;
+const INDEX = scopeURL('index.html');
+const APP_PATH = new URL(APP_SCOPE).pathname;
+const INDEX_PATH = new URL(INDEX).pathname;
+const CORE = [
+  'index.html', 'css/style.css', 'css/themes.css', 'manifest.webmanifest',
+  'js/firebase-config.js', 'js/lunar.js', 'js/theme-registry.js',
+  'js/annual-leave.js', 'js/theme-engine.js', 'js/greetings.js', 'js/event-icons.js',
+  'js/app.js', 'js/cloud.js', 'js/pwa.js',
+  'vendor/firebase/firebase-app-compat.js', 'vendor/firebase/firebase-auth-compat.js',
+  'vendor/firebase/firebase-firestore-compat.js',
+  'assets/illustrations/logo/icon-192.png', 'assets/illustrations/logo/icon-512.png',
+  'assets/illustrations/logo/apple-touch-icon.png', 'assets/illustrations/logo/maskable-512.png',
+  'assets/illustrations/icons/calendar-check.svg', 'assets/illustrations/icons/calendar-days.svg',
+  'assets/illustrations/icons/settings.svg', 'assets/illustrations/icons/sparkles.svg',
+  'assets/illustrations/icons/user-round.svg', 'assets/illustrations/decor/memo.webp',
+  'assets/illustrations/decor/stethoscope.webp', 'assets/illustrations/seasonal/xuan.webp',
+  'assets/illustrations/seasonal/ha.webp', 'assets/illustrations/themes/thu.webp',
+  'assets/illustrations/seasonal/dong.webp'
+].map(scopeURL);
+
+self.addEventListener('install', event => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(SHELL);
+    await cache.addAll(CORE.map(url => new Request(url, {cache:'reload'})));
+    await self.skipWaiting();
+  })());
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil((async () => {
+    for (const name of await caches.keys()) {
+      if (name.startsWith(CACHE_PREFIX) && name !== SHELL && name !== MEDIA) {
+        await caches.delete(name);
+      }
+      if (name === 'lich-truc-visual-v7') {
+        const cache = await caches.open(name);
+        for (const req of await cache.keys()) {
+          const inScope = req.url === APP_SCOPE || CORE.includes(req.url)
+            || req.url.startsWith(scopeURL('assets/illustrations/'))
+            || req.url === scopeURL('js/decor.js');
+          if (inScope) await cache.delete(req);
+        }
+        if (!(await cache.keys()).length) await caches.delete(name);
+      }
+    }
+    await self.clients.claim();
+  })());
+});
+
+async function artwork(request) {
+  const cache = await caches.open(MEDIA);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request, {cache:'no-cache'});
+    if (response.ok && response.headers.get('content-type')?.startsWith('image/')) {
+      try {
+        await cache.put(request, response.clone());
+        const keys = await cache.keys();
+        await Promise.all(keys.slice(0,Math.max(0,keys.length-MEDIA_LIMIT)).map(key => cache.delete(key)));
+      } catch (_) { /* Vẫn trả ảnh khi bộ nhớ đã đầy. */ }
+    }
+    return response;
+  } catch (_) {
+    return Response.error();
+  }
+}
+
+self.addEventListener('fetch', event => {
+  const request = event.request;
+  if (request.method !== 'GET' || !request.url.startsWith(APP_SCOPE)) return;
+  const url = new URL(request.url);
+  if (request.mode === 'navigate' && (url.pathname === APP_PATH || url.pathname === INDEX_PATH)) {
+    event.respondWith(caches.open(SHELL).then(cache => cache.match(INDEX)).then(hit => hit || fetch(request)));
+  } else if (CORE.includes(url.href)) {
+    event.respondWith(caches.open(SHELL).then(cache => cache.match(request)).then(hit => hit || fetch(request)));
+  } else if (url.href.startsWith(scopeURL('assets/illustrations/')) && /\.(webp|png|svg)$/i.test(url.pathname)) {
+    event.respondWith(artwork(request));
+  }
+});

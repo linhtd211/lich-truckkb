@@ -1,0 +1,58 @@
+const GREETINGS = {
+  tetduong:'Chúc năm mới bình an, nhiều niềm vui và những ca trực thuận lợi!',
+  tet:'Đón xuân bình an – Vững vàng ca trực.',
+  hungvuong:'Thành kính tưởng nhớ công ơn dựng nước của các Vua Hùng.',
+  thongnhat:'Trân trọng giá trị của hòa bình, độc lập và thống nhất.',
+  laodong:'Trân trọng những đóng góp của người lao động. Chúc đồng nghiệp trực lễ bình an!',
+  quockhanh:'Tự hào ngày Quốc khánh. Chúc đồng nghiệp trực lễ bình an!',
+  vanhoa:'Tôn vinh bản sắc Việt – Lan tỏa giá trị văn hóa dân tộc.',
+  thanhlapdang:'Trang trọng kỷ niệm ngày thành lập Đảng Cộng sản Việt Nam.',
+  valentine:'Chúc một ngày ấm áp bên những người anh yêu quý.',
+  phunuqt:'Kính chúc các đồng nghiệp nữ luôn mạnh khỏe và hạnh phúc.',
+  thanhlapdoan:'Phát huy tinh thần tình nguyện và trách nhiệm của tuổi trẻ.',
+  ngaysach:'Dành một khoảng thời gian mỗi ngày cho việc đọc.',
+  sinhnhatbac:'Thành kính tưởng nhớ Chủ tịch Hồ Chí Minh.',
+  thieunhi:'Chúc các em nhỏ luôn khỏe mạnh, an toàn và vui tươi.',
+  giadinh:'Chúc mỗi gia đình luôn mạnh khỏe, bình an và gắn bó.',
+  trihan:'Thành kính tri ân những người đã hy sinh vì độc lập, tự do của Tổ quốc.',
+  vulan:'Gửi lời tri ân đến cha mẹ và những người đã nuôi dưỡng chúng ta.',
+  cachmang:'Tưởng nhớ những người đã góp sức giành độc lập cho dân tộc.',
+  trungthu:'Chúc các em một đêm Trung thu vui, an toàn và ấm áp.',
+  phunuvn:'Kính chúc các đồng nghiệp nữ luôn mạnh khỏe, hạnh phúc.',
+  daidoanket:'Cùng vun đắp tinh thần gắn bó và sẻ chia trong cộng đồng.',
+  nhagiao:'Kính gửi lời tri ân đến các thế hệ nhà giáo.',
+  disan:'Gìn giữ và trao truyền những giá trị di sản cho thế hệ sau.',
+  quandoi:'Trân trọng những đóng góp của các thế hệ cán bộ, chiến sĩ.',
+  giangsinh:'Chúc mùa Giáng sinh an lành và ấm áp!',
+  doanngo:'Chúc một ngày Đoan Ngọ an lành bên gia đình.',
+  ramgieng:'Chúc gia đình và đồng nghiệp một ngày Rằm an lành.',
+  ongtao:'Chúc mọi người đón những ngày cuối năm âm lịch ấm áp.',
+  ungthu:'Khuyến khích tiếp cận thông tin và dịch vụ sàng lọc phù hợp.',
+  thaythuoc:'Tận tâm với nghề – Trọn vẹn với người bệnh.',
+  lao:'Chung tay giảm kỳ thị và hỗ trợ người bệnh lao tiếp cận chăm sóc.',
+  suckhoe:'Cùng chăm sóc sức khỏe cho mọi người trong cộng đồng.',
+  sotret:'Cùng nâng cao nhận thức về phòng chống sốt rét.',
+  vesinhtay:'Thực hiện vệ sinh tay đúng thời điểm để bảo vệ người bệnh.',
+  chuthapdo:'Lan tỏa tinh thần nhân đạo và sẻ chia với người cần hỗ trợ.',
+  dieuduong:'Tri ân các đồng nghiệp điều dưỡng vì sự tận tâm mỗi ngày.',
+  huyetap:'Quan tâm theo dõi huyết áp và chăm sóc sức khỏe tim mạch.',
+  thuocla:'Cùng xây dựng môi trường làm việc không khói thuốc.',
+  hienmau:'Tri ân những người tự nguyện hiến máu.',
+  danso:'Tôn trọng quyền tiếp cận dịch vụ chăm sóc sức khỏe của mọi người.',
+  viemgan:'Nâng cao nhận thức và tiếp cận dịch vụ phòng bệnh phù hợp.',
+  suame:'Cùng hỗ trợ các bà mẹ nuôi con bằng sữa mẹ.',
+  antoan:'Cùng củng cố văn hóa an toàn trong chăm sóc người bệnh.',
+  timmach:'Dành thời gian mỗi ngày cho những thói quen tốt cho tim mạch.',
+  tamthan:'Lắng nghe và đồng hành với người cần hỗ trợ sức khỏe tâm thần.',
+  dotquy:'Cùng nâng cao nhận thức về đột quỵ và phản ứng kịp thời.',
+  daithaoduong:'Đồng hành với người bệnh trong theo dõi và chăm sóc dài hạn.',
+  aids:'Chia sẻ thông tin đúng và giảm kỳ thị với người sống chung với HIV.',
+  dichbenh:'Cùng củng cố khả năng chuẩn bị và ứng phó dịch bệnh.'
+};
+
+function greetingFor(theme, weekday, paid) {
+  return GREETINGS[theme?.greeting]
+    || (paid ? 'Chúc mọi người kỳ nghỉ vui vẻ và đồng nghiệp trực lễ bình an!'
+      : weekday === 0 || weekday === 6 ? 'Chúc ca trực bình an và thuận lợi!'
+      : 'Chúc khoa một ngày làm việc hiệu quả!');
+}

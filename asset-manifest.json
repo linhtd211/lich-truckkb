@@ -1,0 +1,1496 @@
+{
+  "version": "2.1.1",
+  "themes": [
+    {
+      "id": "xuan",
+      "name": "Mùa xuân",
+      "paper": "#faf4ed",
+      "ink": "#375248",
+      "disc": "#e8eee0",
+      "art": "seasonal/xuan.webp",
+      "layout": "paper",
+      "source": "original",
+      "asset": "assets/illustrations/seasonal/xuan.webp",
+      "anchors": "paper",
+      "companions": [],
+      "fallback": "base-color",
+      "greetingText": null
+    },
+    {
+      "id": "ha",
+      "name": "Mùa hè",
+      "paper": "#f7f5e8",
+      "ink": "#284b40",
+      "disc": "#e0eddb",
+      "art": "seasonal/ha.webp",
+      "layout": "paper",
+      "source": "original",
+      "asset": "assets/illustrations/seasonal/ha.webp",
+      "anchors": "paper",
+      "companions": [],
+      "fallback": "base-color",
+      "greetingText": null
+    },
+    {
+      "id": "thu",
+      "name": "Mùa thu",
+      "paper": "#fbf3e4",
+      "ink": "#634a2b",
+      "disc": "#f3e5c7",
+      "art": "themes/thu.webp",
+      "layout": "paper",
+      "source": "watercolor",
+      "asset": "assets/illustrations/themes/thu.webp",
+      "anchors": "paper",
+      "companions": [],
+      "fallback": "base-color",
+      "greetingText": null
+    },
+    {
+      "id": "dong",
+      "name": "Mùa đông",
+      "paper": "#f1f5f3",
+      "ink": "#2b4e55",
+      "disc": "#e1eef0",
+      "art": "seasonal/dong.webp",
+      "layout": "paper",
+      "source": "original",
+      "asset": "assets/illustrations/seasonal/dong.webp",
+      "anchors": "paper",
+      "companions": [],
+      "fallback": "base-color",
+      "greetingText": null
+    },
+    {
+      "id": "tetduong",
+      "name": "Tết Dương lịch",
+      "group": "national",
+      "icon": "assets/illustrations/event-icons/theme-tetduong.webp",
+      "rule": {
+        "day": 1,
+        "month": 1
+      },
+      "priority": 600,
+      "kind": "kn",
+      "paper": "#fbf1e4",
+      "ink": "#514229",
+      "disc": "#f5e6ce",
+      "art": "themes/tetduong.webp",
+      "layout": "corner-top",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "tetduong",
+      "window": {
+        "from": [
+          12,
+          31
+        ],
+        "to": [
+          1,
+          1
+        ]
+      },
+      "paid": true,
+      "asset": "assets/illustrations/themes/tetduong.webp",
+      "anchors": "corner-top",
+      "companions": [],
+      "greetingText": "Chúc năm mới bình an, nhiều niềm vui và những ca trực thuận lợi!"
+    },
+    {
+      "id": "tet",
+      "name": "Tết Nguyên đán",
+      "group": "national",
+      "icon": "assets/illustrations/event-icons/theme-tet.webp",
+      "rule": {
+        "day": 1,
+        "month": 1,
+        "lunar": true
+      },
+      "priority": 600,
+      "kind": "kn",
+      "paper": "#fbf1e4",
+      "ink": "#783a40",
+      "disc": "#f5e6ce",
+      "art": "themes/tet.webp",
+      "layout": "corner-top",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "tet",
+      "window": {
+        "tet": true
+      },
+      "asset": "assets/illustrations/themes/tet.webp",
+      "anchors": "corner-top",
+      "companions": [],
+      "greetingText": "Đón xuân bình an – Vững vàng ca trực."
+    },
+    {
+      "id": "hungvuong",
+      "name": "Giỗ Tổ Hùng Vương",
+      "group": "national",
+      "icon": "assets/illustrations/heritage/ngoc-lu-icon.webp",
+      "rule": {
+        "day": 10,
+        "month": 3,
+        "lunar": true
+      },
+      "priority": 600,
+      "kind": "kn",
+      "paper": "#fbf1e4",
+      "ink": "#75413c",
+      "disc": "#f5e6ce",
+      "art": "themes/hungvuong.webp",
+      "layout": "heritage",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "hungvuong",
+      "window": {
+        "from": [
+          3,
+          9
+        ],
+        "to": [
+          3,
+          11
+        ]
+      },
+      "paid": true,
+      "companion": "themes/hung-leaves.webp",
+      "detail": "heritage/ngoc-lu.webp",
+      "asset": "assets/illustrations/themes/hungvuong.webp",
+      "anchors": "heritage",
+      "companions": [
+        "assets/illustrations/themes/hung-leaves.webp",
+        "assets/illustrations/heritage/ngoc-lu.webp"
+      ],
+      "greetingText": "Thành kính tưởng nhớ công ơn dựng nước của các Vua Hùng."
+    },
+    {
+      "id": "thongnhat",
+      "name": "Ngày Giải phóng miền Nam, thống nhất đất nước",
+      "group": "national",
+      "icon": "assets/illustrations/heritage/vietnam-flag.webp",
+      "rule": {
+        "day": 30,
+        "month": 4
+      },
+      "priority": 600,
+      "kind": "kn",
+      "paper": "#fbf1e4",
+      "ink": "#75413c",
+      "disc": "#f5e6ce",
+      "art": "themes/thongnhat.webp",
+      "layout": "heritage",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "thongnhat",
+      "window": {
+        "from": [
+          4,
+          29
+        ],
+        "to": [
+          4,
+          30
+        ]
+      },
+      "paid": true,
+      "companion": "themes/red-silk.webp",
+      "symbol": "heritage/vietnam-flag.webp",
+      "asset": "assets/illustrations/themes/thongnhat.webp",
+      "anchors": "heritage",
+      "companions": [
+        "assets/illustrations/themes/red-silk.webp",
+        "assets/illustrations/heritage/vietnam-flag.webp"
+      ],
+      "greetingText": "Trân trọng giá trị của hòa bình, độc lập và thống nhất."
+    },
+    {
+      "id": "laodong",
+      "name": "Ngày Quốc tế Lao động",
+      "group": "national",
+      "icon": "assets/illustrations/event-icons/theme-laodong.webp",
+      "rule": {
+        "day": 1,
+        "month": 5
+      },
+      "priority": 600,
+      "kind": "kn",
+      "paper": "#fbf1e4",
+      "ink": "#685327",
+      "disc": "#f5e6ce",
+      "art": "themes/laodong.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "laodong",
+      "paid": true,
+      "asset": "assets/illustrations/themes/laodong.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Trân trọng những đóng góp của người lao động. Chúc đồng nghiệp trực lễ bình an!"
+    },
+    {
+      "id": "quockhanh",
+      "name": "Quốc khánh",
+      "group": "national",
+      "icon": "assets/illustrations/heritage/vietnam-flag.webp",
+      "rule": {
+        "day": 2,
+        "month": 9
+      },
+      "priority": 600,
+      "kind": "kn",
+      "paper": "#fbf1e4",
+      "ink": "#75413c",
+      "disc": "#f5e6ce",
+      "art": "themes/quockhanh.webp",
+      "layout": "national",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "quockhanh",
+      "window": {
+        "from": [
+          8,
+          31
+        ],
+        "to": [
+          9,
+          3
+        ]
+      },
+      "paid": true,
+      "companion": "themes/quockhanh-wash.webp",
+      "symbol": "heritage/vietnam-flag.webp",
+      "asset": "assets/illustrations/themes/quockhanh.webp",
+      "anchors": "national",
+      "companions": [
+        "assets/illustrations/themes/quockhanh-wash.webp",
+        "assets/illustrations/heritage/vietnam-flag.webp"
+      ],
+      "greetingText": "Tự hào ngày Quốc khánh. Chúc đồng nghiệp trực lễ bình an!"
+    },
+    {
+      "id": "vanhoa",
+      "name": "Ngày Văn hóa Việt Nam",
+      "group": "national",
+      "icon": "assets/illustrations/heritage/ngoc-lu-icon.webp",
+      "rule": {
+        "day": 24,
+        "month": 11
+      },
+      "priority": 600,
+      "kind": "kn",
+      "paper": "#fbf1e4",
+      "ink": "#75413c",
+      "disc": "#f5e6ce",
+      "art": "themes/vanhoa.webp",
+      "layout": "culture",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "vanhoa",
+      "fromYear": 2026,
+      "paid": true,
+      "title": "Chào mừng Ngày Văn hóa Việt Nam",
+      "designName": "Bản sắc Việt – Heritage of Vietnam",
+      "companion": "themes/vanhoa-wash.webp",
+      "asset": "assets/illustrations/themes/vanhoa.webp",
+      "anchors": "culture",
+      "companions": [
+        "assets/illustrations/themes/vanhoa-wash.webp"
+      ],
+      "greetingText": "Tôn vinh bản sắc Việt – Lan tỏa giá trị văn hóa dân tộc."
+    },
+    {
+      "id": "thanhlapdang",
+      "name": "Ngày thành lập Đảng Cộng sản Việt Nam",
+      "group": "nationalMemory",
+      "icon": "assets/illustrations/heritage/co-dang.webp",
+      "rule": {
+        "day": 3,
+        "month": 2
+      },
+      "priority": 500,
+      "kind": "kn",
+      "paper": "#f6f0e7",
+      "ink": "#604e42",
+      "disc": "#ede3d6",
+      "art": "themes/thanhlapdang.webp",
+      "layout": "corner",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "thanhlapdang",
+      "symbol": "heritage/co-dang-va-co-to-quoc.webp",
+      "asset": "assets/illustrations/themes/thanhlapdang.webp",
+      "anchors": "corner",
+      "companions": [
+        "assets/illustrations/heritage/co-dang-va-co-to-quoc.webp"
+      ],
+      "greetingText": "Trang trọng kỷ niệm ngày thành lập Đảng Cộng sản Việt Nam."
+    },
+    {
+      "id": "valentine",
+      "name": "Valentine",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-valentine.webp",
+      "rule": {
+        "day": 14,
+        "month": 2
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fcf2ef",
+      "ink": "#6a4051",
+      "disc": "#f1e3e8",
+      "art": "themes/valentine.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "valentine",
+      "asset": "assets/illustrations/themes/valentine.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chúc một ngày ấm áp bên những người anh yêu quý."
+    },
+    {
+      "id": "phunuqt",
+      "name": "Ngày Quốc tế Phụ nữ",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-phunuqt.webp",
+      "rule": {
+        "day": 8,
+        "month": 3
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fcf2ef",
+      "ink": "#6a4051",
+      "disc": "#f1e3e8",
+      "art": "themes/phunuqt.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "phunuqt",
+      "asset": "assets/illustrations/themes/phunuqt.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Kính chúc các đồng nghiệp nữ luôn mạnh khỏe và hạnh phúc."
+    },
+    {
+      "id": "thanhlapdoan",
+      "name": "Ngày thành lập Đoàn TNCS Hồ Chí Minh",
+      "group": "nationalMemory",
+      "icon": "assets/illustrations/event-icons/theme-thanhlapdoan.webp",
+      "rule": {
+        "day": 26,
+        "month": 3
+      },
+      "priority": 500,
+      "kind": "kn",
+      "paper": "#edf6f2",
+      "ink": "#2c554c",
+      "disc": "#ede3d6",
+      "art": "themes/thanhlapdoan.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "thanhlapdoan",
+      "asset": "assets/illustrations/themes/thanhlapdoan.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Phát huy tinh thần tình nguyện và trách nhiệm của tuổi trẻ."
+    },
+    {
+      "id": "ngaysach",
+      "name": "Ngày Sách và Văn hóa đọc Việt Nam",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-ngaysach.webp",
+      "rule": {
+        "day": 21,
+        "month": 4
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#eef2f4",
+      "ink": "#374d5d",
+      "disc": "#f1e3e8",
+      "art": "themes/ngaysach.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "ngaysach",
+      "asset": "assets/illustrations/themes/ngaysach.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Dành một khoảng thời gian mỗi ngày cho việc đọc."
+    },
+    {
+      "id": "sinhnhatbac",
+      "name": "Kỷ niệm ngày sinh Chủ tịch Hồ Chí Minh",
+      "group": "nationalMemory",
+      "icon": "assets/illustrations/decor/lotus.webp",
+      "rule": {
+        "day": 19,
+        "month": 5
+      },
+      "priority": 500,
+      "kind": "kn",
+      "paper": "#f6f0e7",
+      "ink": "#604e42",
+      "disc": "#ede3d6",
+      "art": "heritage/bac-1946.webp",
+      "layout": "portrait",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "sinhnhatbac",
+      "companion": "themes/sinhnhatbac.webp",
+      "asset": "assets/illustrations/heritage/bac-1946.webp",
+      "anchors": "portrait",
+      "companions": [
+        "assets/illustrations/themes/sinhnhatbac.webp"
+      ],
+      "greetingText": "Thành kính tưởng nhớ Chủ tịch Hồ Chí Minh."
+    },
+    {
+      "id": "thieunhi",
+      "name": "Ngày Quốc tế Thiếu nhi",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-thieunhi.webp",
+      "rule": {
+        "day": 1,
+        "month": 6
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#f8f4e6",
+      "ink": "#615129",
+      "disc": "#f1e3e8",
+      "art": "themes/thieunhi.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "thieunhi",
+      "asset": "assets/illustrations/themes/thieunhi.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chúc các em nhỏ luôn khỏe mạnh, an toàn và vui tươi."
+    },
+    {
+      "id": "giadinh",
+      "name": "Ngày Gia đình Việt Nam",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-giadinh.webp",
+      "rule": {
+        "day": 28,
+        "month": 6
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fcf2ef",
+      "ink": "#6a4051",
+      "disc": "#f1e3e8",
+      "art": "themes/giadinh.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "giadinh",
+      "asset": "assets/illustrations/themes/giadinh.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chúc mỗi gia đình luôn mạnh khỏe, bình an và gắn bó."
+    },
+    {
+      "id": "trihan",
+      "name": "Ngày Thương binh – Liệt sĩ",
+      "group": "nationalMemory",
+      "icon": "assets/illustrations/event-icons/theme-trihan.webp",
+      "rule": {
+        "day": 27,
+        "month": 7
+      },
+      "priority": 500,
+      "kind": "kn",
+      "paper": "#f8f4e9",
+      "ink": "#544635",
+      "disc": "#ede3d6",
+      "art": "themes/trihan.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "trihan",
+      "asset": "assets/illustrations/themes/trihan.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Thành kính tri ân những người đã hy sinh vì độc lập, tự do của Tổ quốc."
+    },
+    {
+      "id": "vulan",
+      "name": "Lễ Vu Lan",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-vulan.webp",
+      "rule": {
+        "day": 15,
+        "month": 7,
+        "lunar": true
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#f6f1f5",
+      "ink": "#5f475f",
+      "disc": "#f1e3e8",
+      "art": "themes/vulan.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "vulan",
+      "asset": "assets/illustrations/themes/vulan.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Gửi lời tri ân đến cha mẹ và những người đã nuôi dưỡng chúng ta."
+    },
+    {
+      "id": "cachmang",
+      "name": "Kỷ niệm Cách mạng Tháng Tám",
+      "group": "nationalMemory",
+      "icon": "assets/illustrations/decor/memo.webp",
+      "rule": {
+        "day": 19,
+        "month": 8
+      },
+      "priority": 500,
+      "kind": "kn",
+      "paper": "#f6f0e7",
+      "ink": "#604e42",
+      "disc": "#ede3d6",
+      "art": "heritage/cach-mang-1945.webp",
+      "layout": "heritage",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "cachmang",
+      "companion": "themes/cachmang.webp",
+      "asset": "assets/illustrations/heritage/cach-mang-1945.webp",
+      "anchors": "heritage",
+      "companions": [
+        "assets/illustrations/themes/cachmang.webp"
+      ],
+      "greetingText": "Tưởng nhớ những người đã góp sức giành độc lập cho dân tộc."
+    },
+    {
+      "id": "trungthu",
+      "name": "Tết Trung thu",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/star-lantern.webp",
+      "rule": {
+        "day": 15,
+        "month": 8,
+        "lunar": true
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fbf1dc",
+      "ink": "#5c442a",
+      "disc": "#f0e0ba",
+      "art": "themes/trungthu.webp",
+      "layout": "paper",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "trungthu",
+      "window": {
+        "from": [
+          8,
+          13
+        ],
+        "to": [
+          8,
+          16
+        ]
+      },
+      "asset": "assets/illustrations/themes/trungthu.webp",
+      "anchors": "paper",
+      "companions": [],
+      "greetingText": "Chúc các em một đêm Trung thu vui, an toàn và ấm áp."
+    },
+    {
+      "id": "phunuvn",
+      "name": "Ngày Phụ nữ Việt Nam",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-phunuvn.webp",
+      "rule": {
+        "day": 20,
+        "month": 10
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fcf2ef",
+      "ink": "#6a4051",
+      "disc": "#f1e3e8",
+      "art": "themes/phunuvn.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "phunuvn",
+      "asset": "assets/illustrations/themes/phunuvn.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Kính chúc các đồng nghiệp nữ luôn mạnh khỏe, hạnh phúc."
+    },
+    {
+      "id": "daidoanket",
+      "name": "Ngày hội Đại đoàn kết toàn dân tộc",
+      "group": "nationalMemory",
+      "icon": "assets/illustrations/event-icons/theme-daidoanket.webp",
+      "rule": {
+        "day": 18,
+        "month": 11
+      },
+      "priority": 500,
+      "kind": "kn",
+      "paper": "#f6f0e7",
+      "ink": "#604e42",
+      "disc": "#ede3d6",
+      "art": "themes/daidoanket.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "daidoanket",
+      "asset": "assets/illustrations/themes/daidoanket.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng vun đắp tinh thần gắn bó và sẻ chia trong cộng đồng."
+    },
+    {
+      "id": "nhagiao",
+      "name": "Ngày Nhà giáo Việt Nam",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-nhagiao.webp",
+      "rule": {
+        "day": 20,
+        "month": 11
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fbf1e7",
+      "ink": "#594d3d",
+      "disc": "#f1e3e8",
+      "art": "themes/nhagiao.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "nhagiao",
+      "asset": "assets/illustrations/themes/nhagiao.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Kính gửi lời tri ân đến các thế hệ nhà giáo."
+    },
+    {
+      "id": "disan",
+      "name": "Ngày Di sản Văn hóa Việt Nam",
+      "group": "cultural",
+      "icon": "assets/illustrations/heritage/thap-rua-icon.webp",
+      "rule": {
+        "day": 23,
+        "month": 11
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#f4f0dd",
+      "ink": "#435546",
+      "disc": "#f1e3e8",
+      "art": "themes/disan.webp",
+      "layout": "heritage",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "disan",
+      "companion": "themes/vanhoa-wash.webp",
+      "asset": "assets/illustrations/themes/disan.webp",
+      "anchors": "heritage",
+      "companions": [
+        "assets/illustrations/themes/vanhoa-wash.webp"
+      ],
+      "greetingText": "Gìn giữ và trao truyền những giá trị di sản cho thế hệ sau."
+    },
+    {
+      "id": "quandoi",
+      "name": "Ngày thành lập Quân đội nhân dân Việt Nam",
+      "group": "nationalMemory",
+      "icon": "assets/illustrations/heritage/vietnam-flag.webp",
+      "rule": {
+        "day": 22,
+        "month": 12
+      },
+      "priority": 500,
+      "kind": "kn",
+      "paper": "#f1f3e8",
+      "ink": "#434f38",
+      "disc": "#ede3d6",
+      "art": "themes/quandoi.webp",
+      "layout": "heritage",
+      "source": "heritage",
+      "fallback": "season",
+      "greeting": "quandoi",
+      "asset": "assets/illustrations/themes/quandoi.webp",
+      "anchors": "heritage",
+      "companions": [],
+      "greetingText": "Trân trọng những đóng góp của các thế hệ cán bộ, chiến sĩ."
+    },
+    {
+      "id": "giangsinh",
+      "name": "Giáng sinh",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-giangsinh.webp",
+      "rule": {
+        "month": 12,
+        "days": [
+          24,
+          25
+        ]
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#eff5ef",
+      "ink": "#354f48",
+      "disc": "#f1e3e8",
+      "art": "themes/giangsinh.webp",
+      "layout": "corner-top",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "giangsinh",
+      "window": {
+        "from": [
+          12,
+          22
+        ],
+        "to": [
+          12,
+          26
+        ]
+      },
+      "asset": "assets/illustrations/themes/giangsinh.webp",
+      "anchors": "corner-top",
+      "companions": [],
+      "greetingText": "Chúc mùa Giáng sinh an lành và ấm áp!"
+    },
+    {
+      "id": "doanngo",
+      "name": "Tết Đoan Ngọ",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-doanngo.webp",
+      "rule": {
+        "day": 5,
+        "month": 5,
+        "lunar": true
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#f4f4e3",
+      "ink": "#455036",
+      "disc": "#f1e3e8",
+      "art": "themes/doanngo.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "doanngo",
+      "asset": "assets/illustrations/themes/doanngo.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chúc một ngày Đoan Ngọ an lành bên gia đình."
+    },
+    {
+      "id": "ramgieng",
+      "name": "Rằm tháng Giêng",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-ramgieng.webp",
+      "rule": {
+        "day": 15,
+        "month": 1,
+        "lunar": true
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fcf2ef",
+      "ink": "#6a4051",
+      "disc": "#f1e3e8",
+      "art": "themes/ramgieng.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "ramgieng",
+      "asset": "assets/illustrations/themes/ramgieng.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chúc gia đình và đồng nghiệp một ngày Rằm an lành."
+    },
+    {
+      "id": "ongtao",
+      "name": "Ông Công Ông Táo",
+      "group": "cultural",
+      "icon": "assets/illustrations/event-icons/theme-ongtao.webp",
+      "rule": {
+        "day": 23,
+        "month": 12,
+        "lunar": true
+      },
+      "priority": 300,
+      "kind": "kn",
+      "paper": "#fcf2ef",
+      "ink": "#6a4051",
+      "disc": "#f1e3e8",
+      "art": "themes/ongtao.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "ongtao",
+      "asset": "assets/illustrations/themes/ongtao.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chúc mọi người đón những ngày cuối năm âm lịch ấm áp."
+    },
+    {
+      "id": "ungthu",
+      "name": "Ngày Thế giới phòng chống ung thư",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-ungthu.webp",
+      "rule": {
+        "day": 4,
+        "month": 2
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/ungthu.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "ungthu",
+      "asset": "assets/illustrations/themes/ungthu.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Khuyến khích tiếp cận thông tin và dịch vụ sàng lọc phù hợp."
+    },
+    {
+      "id": "thaythuoc",
+      "name": "Ngày Thầy thuốc Việt Nam",
+      "group": "medical",
+      "icon": "assets/illustrations/decor/stethoscope.webp",
+      "rule": {
+        "day": 27,
+        "month": 2
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#faf4ee",
+      "ink": "#254e48",
+      "disc": "#e6eee4",
+      "art": "themes/thaythuoc.webp",
+      "layout": "paper",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "thaythuoc",
+      "window": {
+        "from": [
+          2,
+          26
+        ],
+        "to": [
+          2,
+          27
+        ]
+      },
+      "asset": "assets/illustrations/themes/thaythuoc.webp",
+      "anchors": "paper",
+      "companions": [],
+      "greetingText": "Tận tâm với nghề – Trọn vẹn với người bệnh."
+    },
+    {
+      "id": "lao",
+      "name": "Ngày Thế giới phòng chống lao",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-lao.webp",
+      "rule": {
+        "day": 24,
+        "month": 3
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/lao.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "lao",
+      "asset": "assets/illustrations/themes/lao.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chung tay giảm kỳ thị và hỗ trợ người bệnh lao tiếp cận chăm sóc."
+    },
+    {
+      "id": "suckhoe",
+      "name": "Ngày Sức khỏe thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-suckhoe.webp",
+      "rule": {
+        "day": 7,
+        "month": 4
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/suckhoe.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "suckhoe",
+      "asset": "assets/illustrations/themes/suckhoe.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng chăm sóc sức khỏe cho mọi người trong cộng đồng."
+    },
+    {
+      "id": "sotret",
+      "name": "Ngày Thế giới phòng chống sốt rét",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-sotret.webp",
+      "rule": {
+        "day": 25,
+        "month": 4
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/sotret.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "sotret",
+      "asset": "assets/illustrations/themes/sotret.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng nâng cao nhận thức về phòng chống sốt rét."
+    },
+    {
+      "id": "vesinhtay",
+      "name": "Ngày Vệ sinh tay thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-vesinhtay.webp",
+      "rule": {
+        "day": 5,
+        "month": 5
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/vesinhtay.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "vesinhtay",
+      "asset": "assets/illustrations/themes/vesinhtay.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Thực hiện vệ sinh tay đúng thời điểm để bảo vệ người bệnh."
+    },
+    {
+      "id": "chuthapdo",
+      "name": "Ngày Chữ thập đỏ và Trăng lưỡi liềm đỏ thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-chuthapdo.webp",
+      "rule": {
+        "day": 8,
+        "month": 5
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/chuthapdo.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "chuthapdo",
+      "asset": "assets/illustrations/themes/chuthapdo.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Lan tỏa tinh thần nhân đạo và sẻ chia với người cần hỗ trợ."
+    },
+    {
+      "id": "dieuduong",
+      "name": "Ngày Quốc tế Điều dưỡng",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-dieuduong.webp",
+      "rule": {
+        "day": 12,
+        "month": 5
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/dieuduong.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "dieuduong",
+      "asset": "assets/illustrations/themes/dieuduong.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Tri ân các đồng nghiệp điều dưỡng vì sự tận tâm mỗi ngày."
+    },
+    {
+      "id": "huyetap",
+      "name": "Ngày Tăng huyết áp thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-huyetap.webp",
+      "rule": {
+        "day": 17,
+        "month": 5
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/huyetap.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "huyetap",
+      "asset": "assets/illustrations/themes/huyetap.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Quan tâm theo dõi huyết áp và chăm sóc sức khỏe tim mạch."
+    },
+    {
+      "id": "thuocla",
+      "name": "Ngày Thế giới không thuốc lá",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-thuocla.webp",
+      "rule": {
+        "day": 31,
+        "month": 5
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/thuocla.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "thuocla",
+      "asset": "assets/illustrations/themes/thuocla.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng xây dựng môi trường làm việc không khói thuốc."
+    },
+    {
+      "id": "hienmau",
+      "name": "Ngày Thế giới tôn vinh người hiến máu",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-hienmau.webp",
+      "rule": {
+        "day": 14,
+        "month": 6
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/hienmau.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "hienmau",
+      "asset": "assets/illustrations/themes/hienmau.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Tri ân những người tự nguyện hiến máu."
+    },
+    {
+      "id": "danso",
+      "name": "Ngày Dân số thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-danso.webp",
+      "rule": {
+        "day": 11,
+        "month": 7
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/danso.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "danso",
+      "asset": "assets/illustrations/themes/danso.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Tôn trọng quyền tiếp cận dịch vụ chăm sóc sức khỏe của mọi người."
+    },
+    {
+      "id": "viemgan",
+      "name": "Ngày Viêm gan thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-viemgan.webp",
+      "rule": {
+        "day": 28,
+        "month": 7
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/viemgan.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "viemgan",
+      "asset": "assets/illustrations/themes/viemgan.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Nâng cao nhận thức và tiếp cận dịch vụ phòng bệnh phù hợp."
+    },
+    {
+      "id": "suame",
+      "name": "Tuần lễ Nuôi con bằng sữa mẹ",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-suame.webp",
+      "rule": {
+        "day": 1,
+        "month": 8
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/suame.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "suame",
+      "window": {
+        "from": [
+          8,
+          1
+        ],
+        "to": [
+          8,
+          7
+        ]
+      },
+      "period": true,
+      "asset": "assets/illustrations/themes/suame.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng hỗ trợ các bà mẹ nuôi con bằng sữa mẹ."
+    },
+    {
+      "id": "antoan",
+      "name": "Ngày An toàn người bệnh thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-antoan.webp",
+      "rule": {
+        "day": 17,
+        "month": 9
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/antoan.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "antoan",
+      "asset": "assets/illustrations/themes/antoan.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng củng cố văn hóa an toàn trong chăm sóc người bệnh."
+    },
+    {
+      "id": "timmach",
+      "name": "Ngày Tim mạch thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-timmach.webp",
+      "rule": {
+        "day": 29,
+        "month": 9
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/timmach.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "timmach",
+      "asset": "assets/illustrations/themes/timmach.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Dành thời gian mỗi ngày cho những thói quen tốt cho tim mạch."
+    },
+    {
+      "id": "tamthan",
+      "name": "Ngày Sức khỏe tâm thần thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-tamthan.webp",
+      "rule": {
+        "day": 10,
+        "month": 10
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/tamthan.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "tamthan",
+      "asset": "assets/illustrations/themes/tamthan.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Lắng nghe và đồng hành với người cần hỗ trợ sức khỏe tâm thần."
+    },
+    {
+      "id": "dotquy",
+      "name": "Ngày Đột quỵ thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-dotquy.webp",
+      "rule": {
+        "day": 29,
+        "month": 10
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/dotquy.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "dotquy",
+      "asset": "assets/illustrations/themes/dotquy.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng nâng cao nhận thức về đột quỵ và phản ứng kịp thời."
+    },
+    {
+      "id": "daithaoduong",
+      "name": "Ngày Đái tháo đường thế giới",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-daithaoduong.webp",
+      "rule": {
+        "day": 14,
+        "month": 11
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/daithaoduong.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "daithaoduong",
+      "asset": "assets/illustrations/themes/daithaoduong.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Đồng hành với người bệnh trong theo dõi và chăm sóc dài hạn."
+    },
+    {
+      "id": "aids",
+      "name": "Ngày Thế giới phòng chống AIDS",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-aids.webp",
+      "rule": {
+        "day": 1,
+        "month": 12
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/aids.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "aids",
+      "asset": "assets/illustrations/themes/aids.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Chia sẻ thông tin đúng và giảm kỳ thị với người sống chung với HIV."
+    },
+    {
+      "id": "dichbenh",
+      "name": "Ngày Quốc tế phòng chống dịch bệnh",
+      "group": "medical",
+      "icon": "assets/illustrations/event-icons/theme-dichbenh.webp",
+      "rule": {
+        "day": 27,
+        "month": 12
+      },
+      "priority": 400,
+      "kind": "yt",
+      "paper": "#eef6f0",
+      "ink": "#254e48",
+      "disc": "#dceee3",
+      "art": "themes/dichbenh.webp",
+      "layout": "corner",
+      "source": "watercolor",
+      "fallback": "season",
+      "greeting": "dichbenh",
+      "asset": "assets/illustrations/themes/dichbenh.webp",
+      "anchors": "corner",
+      "companions": [],
+      "greetingText": "Cùng củng cố khả năng chuẩn bị và ứng phó dịch bệnh."
+    }
+  ],
+  "solarTerms": [
+    {
+      "name": "Xuân phân",
+      "id": "xuan-phan",
+      "path": "assets/illustrations/event-icons/solar/xuan-phan.webp"
+    },
+    {
+      "name": "Thanh minh",
+      "id": "thanh-minh",
+      "path": "assets/illustrations/event-icons/solar/thanh-minh.webp"
+    },
+    {
+      "name": "Cốc vũ",
+      "id": "coc-vu",
+      "path": "assets/illustrations/event-icons/solar/coc-vu.webp"
+    },
+    {
+      "name": "Lập hạ",
+      "id": "lap-ha",
+      "path": "assets/illustrations/event-icons/solar/lap-ha.webp"
+    },
+    {
+      "name": "Tiểu mãn",
+      "id": "tieu-man",
+      "path": "assets/illustrations/event-icons/solar/tieu-man.webp"
+    },
+    {
+      "name": "Mang chủng",
+      "id": "mang-chung",
+      "path": "assets/illustrations/event-icons/solar/mang-chung.webp"
+    },
+    {
+      "name": "Hạ chí",
+      "id": "ha-chi",
+      "path": "assets/illustrations/event-icons/solar/ha-chi.webp"
+    },
+    {
+      "name": "Tiểu thử",
+      "id": "tieu-thu",
+      "path": "assets/illustrations/event-icons/solar/tieu-thu.webp"
+    },
+    {
+      "name": "Đại thử",
+      "id": "dai-thu",
+      "path": "assets/illustrations/event-icons/solar/dai-thu.webp"
+    },
+    {
+      "name": "Lập thu",
+      "id": "lap-thu",
+      "path": "assets/illustrations/event-icons/solar/lap-thu.webp"
+    },
+    {
+      "name": "Xử thử",
+      "id": "xu-thu",
+      "path": "assets/illustrations/event-icons/solar/xu-thu.webp"
+    },
+    {
+      "name": "Bạch lộ",
+      "id": "bach-lo",
+      "path": "assets/illustrations/event-icons/solar/bach-lo.webp"
+    },
+    {
+      "name": "Thu phân",
+      "id": "thu-phan",
+      "path": "assets/illustrations/event-icons/solar/thu-phan.webp"
+    },
+    {
+      "name": "Hàn lộ",
+      "id": "han-lo",
+      "path": "assets/illustrations/event-icons/solar/han-lo.webp"
+    },
+    {
+      "name": "Sương giáng",
+      "id": "suong-giang",
+      "path": "assets/illustrations/event-icons/solar/suong-giang.webp"
+    },
+    {
+      "name": "Lập đông",
+      "id": "lap-dong",
+      "path": "assets/illustrations/event-icons/solar/lap-dong.webp"
+    },
+    {
+      "name": "Tiểu tuyết",
+      "id": "tieu-tuyet",
+      "path": "assets/illustrations/event-icons/solar/tieu-tuyet.webp"
+    },
+    {
+      "name": "Đại tuyết",
+      "id": "dai-tuyet",
+      "path": "assets/illustrations/event-icons/solar/dai-tuyet.webp"
+    },
+    {
+      "name": "Đông chí",
+      "id": "dong-chi",
+      "path": "assets/illustrations/event-icons/solar/dong-chi.webp"
+    },
+    {
+      "name": "Tiểu hàn",
+      "id": "tieu-han",
+      "path": "assets/illustrations/event-icons/solar/tieu-han.webp"
+    },
+    {
+      "name": "Đại hàn",
+      "id": "dai-han",
+      "path": "assets/illustrations/event-icons/solar/dai-han.webp"
+    },
+    {
+      "name": "Lập xuân",
+      "id": "lap-xuan",
+      "path": "assets/illustrations/event-icons/solar/lap-xuan.webp"
+    },
+    {
+      "name": "Vũ thủy",
+      "id": "vu-thuy",
+      "path": "assets/illustrations/event-icons/solar/vu-thuy.webp"
+    },
+    {
+      "name": "Kinh trập",
+      "id": "kinh-trap",
+      "path": "assets/illustrations/event-icons/solar/kinh-trap.webp"
+    }
+  ]
+}

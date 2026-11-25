@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Lịch trực Khoa Khám bệnh, chữa bệnh - lịch âm, ngày lễ, xếp lịch xoay vòng">
 <title>Lịch trực Khoa KCB</title>
 <meta name="theme-color" content="#22a865">
@@ -11,7 +11,8 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/illustrations/logo/icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/illustrations/logo/apple-touch-icon.png">
-<link rel="stylesheet" href="css/style.css"></head><body>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/themes.css"></head><body>
 <div id="app"></div>
 <div class="tabs">
 <button id="t-td" onclick="T('td')"><span class="ti-ic i-td"></span>Hôm nay</button>
@@ -25,7 +26,11 @@
 <script src="vendor/firebase/firebase-firestore-compat.js"></script>
 <script src="js/firebase-config.js"></script>
 <script src="js/lunar.js"></script>
-<script src="js/decor.js"></script>
+<script src="js/theme-registry.js"></script>
+<script src="js/annual-leave.js"></script>
+<script src="js/theme-engine.js"></script>
+<script src="js/greetings.js"></script>
+<script src="js/event-icons.js"></script>
 <script src="js/app.js"></script>
 <script src="js/cloud.js"></script>
 <script src="js/pwa.js"></script></body></html>

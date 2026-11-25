@@ -1,3 +1,5 @@
+> **Visual 2.1** · Đọc [hướng dẫn cập nhật GitHub Pages](CAP_NHAT_GITHUB_PAGES.md), [nguồn minh họa](ASSET_SOURCES.md) và [báo cáo nghiệm thu](nghiem-thu/BAO_CAO.md). Với website đang đồng bộ Firebase, dùng gói UpdateOnly để giữ cấu hình kết nối của repository.
+
 # Lịch trực Khoa Khám bệnh, chữa bệnh
 
 Ứng dụng web xem và quản lý **lịch trực** cho khoa Khám bệnh, chữa bệnh tuyến cơ sở. Giao diện theo kiểu lịch Việt Nam (xanh lá, hoa văn chữ hồi mờ, bo góc mềm), dùng tốt trên điện thoại. Không cần cài đặt, không cần máy chủ: chỉ gồm HTML, CSS và JavaScript thuần.

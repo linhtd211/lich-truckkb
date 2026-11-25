@@ -1,0 +1,263 @@
+{
+  "tests": [
+    "Các ngày mục tiêu, 4 mùa và các khoảng trang trí",
+    "Nghỉ lễ, nghỉ bù, hoán đổi và ca trực được xử lý riêng",
+    "Ngày âm nhuận và các sự kiện trùng ngày",
+    "24 mốc tiết khí được tính hằng năm, mỗi tiết có icon riêng",
+    "Mọi chủ đề sự kiện có ngày kích hoạt, ảnh, icon và lời chúc",
+    "Thay tranh hoặc icon dự phòng khi tệp ảnh chưa có trong cache",
+    "Ngày 22/12 hiển thị ảnh Đội danh dự và có nguồn ảnh trong trang chi tiết",
+    "Mã hiển thị chuyển ngày, tab Sự kiện, lịch tháng và thống kê",
+    "Xếp vòng, thêm cán bộ, đổi ca, chỉ định và dữ liệu cũ",
+    "Luồng Firebase tương thích với snapshot và ghi lịch từ quản trị viên mô phỏng",
+    "So sánh với Visual 2.0 trên 10.958 ngày và cấu hình nguyên bản",
+    "Service Worker mô phỏng: subpath, bộ khung, media, offline và dọn cache cũ theo phạm vi"
+  ],
+  "themeDates": {
+    "tetduong": [
+      1,
+      1,
+      2026
+    ],
+    "thanhlapdang": [
+      3,
+      2,
+      2026
+    ],
+    "ungthu": [
+      4,
+      2,
+      2026
+    ],
+    "ongtao": [
+      10,
+      2,
+      2026
+    ],
+    "valentine": [
+      14,
+      2,
+      2026
+    ],
+    "tet": [
+      16,
+      2,
+      2026
+    ],
+    "thaythuoc": [
+      27,
+      2,
+      2026
+    ],
+    "ramgieng": [
+      3,
+      3,
+      2026
+    ],
+    "phunuqt": [
+      8,
+      3,
+      2026
+    ],
+    "lao": [
+      24,
+      3,
+      2026
+    ],
+    "thanhlapdoan": [
+      26,
+      3,
+      2026
+    ],
+    "suckhoe": [
+      7,
+      4,
+      2026
+    ],
+    "ngaysach": [
+      21,
+      4,
+      2026
+    ],
+    "sotret": [
+      25,
+      4,
+      2026
+    ],
+    "hungvuong": [
+      26,
+      4,
+      2026
+    ],
+    "thongnhat": [
+      30,
+      4,
+      2026
+    ],
+    "laodong": [
+      1,
+      5,
+      2026
+    ],
+    "vesinhtay": [
+      5,
+      5,
+      2026
+    ],
+    "chuthapdo": [
+      8,
+      5,
+      2026
+    ],
+    "dieuduong": [
+      12,
+      5,
+      2026
+    ],
+    "huyetap": [
+      17,
+      5,
+      2026
+    ],
+    "sinhnhatbac": [
+      19,
+      5,
+      2026
+    ],
+    "thuocla": [
+      31,
+      5,
+      2026
+    ],
+    "thieunhi": [
+      1,
+      6,
+      2026
+    ],
+    "hienmau": [
+      14,
+      6,
+      2026
+    ],
+    "doanngo": [
+      19,
+      6,
+      2026
+    ],
+    "giadinh": [
+      28,
+      6,
+      2026
+    ],
+    "danso": [
+      11,
+      7,
+      2026
+    ],
+    "trihan": [
+      27,
+      7,
+      2026
+    ],
+    "viemgan": [
+      28,
+      7,
+      2026
+    ],
+    "suame": [
+      1,
+      8,
+      2026
+    ],
+    "cachmang": [
+      19,
+      8,
+      2026
+    ],
+    "vulan": [
+      27,
+      8,
+      2026
+    ],
+    "quockhanh": [
+      31,
+      8,
+      2026
+    ],
+    "antoan": [
+      17,
+      9,
+      2026
+    ],
+    "trungthu": [
+      25,
+      9,
+      2026
+    ],
+    "timmach": [
+      29,
+      9,
+      2026
+    ],
+    "tamthan": [
+      10,
+      10,
+      2026
+    ],
+    "phunuvn": [
+      20,
+      10,
+      2026
+    ],
+    "dotquy": [
+      29,
+      10,
+      2026
+    ],
+    "daithaoduong": [
+      14,
+      11,
+      2026
+    ],
+    "daidoanket": [
+      18,
+      11,
+      2026
+    ],
+    "nhagiao": [
+      20,
+      11,
+      2026
+    ],
+    "disan": [
+      23,
+      11,
+      2026
+    ],
+    "vanhoa": [
+      24,
+      11,
+      2026
+    ],
+    "aids": [
+      1,
+      12,
+      2026
+    ],
+    "quandoi": [
+      22,
+      12,
+      2026
+    ],
+    "giangsinh": [
+      24,
+      12,
+      2026
+    ],
+    "dichbenh": [
+      27,
+      12,
+      2026
+    ]
+  }
+}
