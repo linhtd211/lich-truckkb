@@ -1,3 +1,8 @@
+# Visual 2.1.2
+
+- Sửa trực tiếp họ tên cán bộ trong danh sách trực của phần Quản trị. Tên mới hiển thị trên các ca của cùng cán bộ.
+- Bỏ mục Nhật ký đổi lịch khỏi giao diện Quản trị. Dữ liệu nhật ký vẫn được lưu.
+
 # Visual 2.1.1
 
 - Chủ đề 22/12 dùng ảnh chụp Đội danh dự Quân đội nhân dân Việt Nam năm 2019, ghi nguồn và giấy phép trong ASSET_SOURCES.md.

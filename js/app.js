@@ -191,12 +191,68 @@ function mv(id,d){const k=effD(),ids=cur().slice(),i=ids.indexOf(id),j=i+d;if(i<
 function del(id){const k=effD(),old=cur(),ids=old.filter(x=>x!==id);if(old.length==ids.length)return;if(!ids.length)return toast('Cần ít nhất 1 cán bộ');const b=baseAt(k);setSeg(k,ids,b===id?old.indexOf(id)%ids.length:bIdx(ids,b),'Ngừng trực: '+byId(id).name);toast(byId(id).name+' ngừng trực từ '+fmt(k))}
 function add(){const n=$('#nn').value.trim(),k=effD();if(!n)return toast('Nhập họ tên cán bộ');const b=baseAt(k),ids=cur().slice(),id=S.nid++;S.staff.push({id,name:n});ids.push(id);setSeg(k,ids,$('#nw').value==='1'?ids.length-1:bIdx(ids,b),'Thêm cán bộ: '+n);toast('Đã thêm, vào trực từ '+fmt(k))}
 function apply(){const k=effD(),ids=cur().slice(),si=ids.indexOf(+$('#si').value);if(si<0)return toast('Chọn người trực đầu tiên');setSeg(k,ids,si,'Xếp lại vòng, đầu tiên: '+byId(ids[si]).name);toast('Đã xếp lại vòng trực từ '+fmt(k))}
+function showStaffNameForm(id, editing) {
+  if (!ADM) return;
+  const staff = byId(id);
+  const form = $('#staff-name-form-'+id);
+  if (!staff || !form) return;
+  const button = $('#staff-name-edit-'+id);
+  form.hidden = !editing;
+  button.setAttribute('aria-expanded', String(editing));
+  if (editing) {
+    const input = form.elements.staffName;
+    input.value = staff.name;
+    input.focus();
+    input.select();
+  } else {
+    button.focus();
+  }
+}
+
+function renameStaff(id, value) {
+  if (!ADM) return;
+  const staff = byId(id);
+  if (!staff || !cur().some(memberId => String(memberId) === String(staff.id))) return toast('Cán bộ không còn trong vòng trực');
+  const name = value.trim();
+  if (!name) return toast('Nhập họ tên cán bộ');
+  if (name === staff.name) return showStaffNameForm(id, false);
+
+  staff.name = name;
+  save();
+  render();
+  $('#staff-name-edit-'+id).focus();
+  toast('Đã cập nhật tên cán bộ');
+}
+
+function staffEntry(id, index) {
+  const staff = byId(id);
+  return `<div class="staff-entry">
+    <div class="row">
+      <span class="dot" style="background:${col(staff)}"></span>
+      <div class="grow staff-entry-name">${index+1}. ${esc(staff.name)}</div>
+      <div class="staff-entry-actions">
+        <button class="sbtn" type="button" id="staff-name-edit-${id}" aria-expanded="false" aria-controls="staff-name-form-${id}" onclick="showStaffNameForm(${id},this.getAttribute('aria-expanded')!=='true')">Sửa tên</button>
+        <button class="sbtn" type="button" aria-label="Chuyển lên" onclick="mv(${id},-1)">▲</button>
+        <button class="sbtn" type="button" aria-label="Chuyển xuống" onclick="mv(${id},1)">▼</button>
+        <button class="sbtn" type="button" aria-label="Ngừng trực" onclick="del(${id})">✕</button>
+      </div>
+    </div>
+    <form id="staff-name-form-${id}" class="staff-name-form" hidden onsubmit="event.preventDefault();renameStaff(${id},this.elements.staffName.value)">
+      <label class="sm" for="staff-name-${id}">Họ tên cán bộ</label>
+      <input type="text" id="staff-name-${id}" name="staffName" required>
+      <div class="staff-entry-actions">
+        <button class="sbtn" type="submit">Lưu tên</button>
+        <button class="sbtn" type="button" onclick="showStaffNameForm(${id},false)">Hủy</button>
+      </div>
+    </form>
+  </div>`;
+}
+
 function adV(){if(!ADM)return `<div class="card"><h3>🔒 Đăng nhập quản trị</h3><p class="mut sm">Cán bộ khác chỉ xem lịch. Nhập mã quản trị để xếp lịch, đổi lịch, chỉnh danh sách.</p>${CLOUD?'<input id="em" type="email" autocomplete="username" placeholder="Email quản trị">':''}<input id="pin" type="password" ${CLOUD?'autocomplete="current-password" placeholder="Mật khẩu"':'inputmode="numeric" autocomplete="off" placeholder="Mã quản trị"'} onkeydown="if(event.key==='Enter')login()"><button class="btn" onclick="login()">Đăng nhập</button></div>`;
-return `<div class="card"><h3>Ngày áp dụng thay đổi</h3><p class="mut sm">Mọi thay đổi bên dưới (thêm, bớt, đổi thứ tự, xếp lại vòng) chỉ có hiệu lực từ ngày này trở đi. Lịch trực các ngày trước đó được giữ nguyên.</p><input type="date" id="eff" value="${effD()}" onchange="V.eff=this.value"></div>
-<div class="card"><h3>Danh sách cán bộ trong vòng trực</h3><p class="mut sm">Giai đoạn hiện tại áp dụng từ ${fmt(S.rot[S.rot.length-1].from)}, theo thứ tự xoay vòng.</p>`+cur().map((id,i)=>{const s=byId(id);return `<div class="row"><span class="dot" style="background:${col(s)}"></span><div class="grow">${i+1}. ${esc(s.name)}</div><button class="sbtn" onclick="mv(${id},-1)">▲</button><button class="sbtn" onclick="mv(${id},1)">▼</button><button class="sbtn" onclick="del(${id})">✕</button></div>`}).join('')+`<div class="sm mut" style="margin-top:10px">Thêm cán bộ mới (vào trực từ ngày áp dụng)</div><input id="nn" placeholder="Họ tên cán bộ mới"><select id="nw"><option value="1">Trực ngay từ ngày áp dụng</option><option value="0">Nối tiếp vòng, đến lượt mới trực</option></select><button class="btn o" onclick="add()">Thêm cán bộ</button></div>
+return `<div class="card"><h3>Ngày áp dụng thay đổi</h3><p class="mut sm">Thêm, ngừng trực, đổi thứ tự và xếp lại vòng áp dụng từ ngày này. Tên đã sửa hiển thị ngay trên mọi ca của cán bộ.</p><input type="date" id="eff" value="${effD()}" onchange="V.eff=this.value"></div>
+<div class="card"><h3>Danh sách cán bộ trong vòng trực</h3><p class="mut sm">Giai đoạn hiện tại áp dụng từ ${fmt(S.rot[S.rot.length-1].from)}, theo thứ tự xoay vòng.</p>`+cur().map(staffEntry).join('')+`<div class="sm mut" style="margin-top:10px">Thêm cán bộ mới (vào trực từ ngày áp dụng)</div><input id="nn" placeholder="Họ tên cán bộ mới"><select id="nw"><option value="1">Trực ngay từ ngày áp dụng</option><option value="0">Nối tiếp vòng, đến lượt mới trực</option></select><button class="btn o" onclick="add()">Thêm cán bộ</button></div>
 <div class="card"><h3>Xếp lại vòng trực</h3><p class="mut sm">Chọn người trực đầu tiên, vòng xoay tiếp tục từ ngày áp dụng.</p><select id="si">${cur().map(id=>`<option value="${id}">${esc(byId(id).name)}</option>`).join('')}</select><button class="btn" onclick="apply()">Áp dụng từ ngày đã chọn</button><button class="btn o" style="margin-top:8px" onclick="S.sw={};save();render();toast('Đã xóa các thay đổi')">Xóa mọi lần đổi lịch</button></div>
 ${evCard()}
-<div class="card"><h3>Nhật ký đổi lịch</h3>${S.log.map(x=>`<div class="row"><div class="grow sm">${esc(x.t)}<div class="mut">${esc(x.x)}</div></div></div>`).join('')||'<div class="mut sm">Chưa có thay đổi.</div>'}</div>
 ${CLOUD?`<div class="card"><h3>Tài khoản quản trị</h3><p class="mut sm">${esc(CLOUD.who())}</p><button class="btn" onclick="CLOUD.logout()">Đăng xuất</button></div>`:''}<div class="card" ${CLOUD?'hidden':''}><h3>Mã quản trị</h3><input id="np" type="password" inputmode="numeric" placeholder="Mã mới (tối thiểu 4 số)"><button class="btn o" onclick="const v=$('#np').value;if(v.length<4)return toast('Mã quá ngắn');S.ph=pinHash(v);save();toast('Đã đổi mã')">Đổi mã</button><button class="btn" style="margin-top:8px" onclick="ADM=false;render()">Đăng xuất</button></div>`}
 const waitV=()=>`<div class="card" style="text-align:center"><h3>${V.empty?'Chưa có lịch trực':'Đang tải lịch trực…'}</h3><p class="mut sm">${V.empty?'Quản trị viên cần đăng nhập (tab Quản trị) để tạo lịch lần đầu.':'Đang kết nối máy chủ. Khi mất mạng, app hiển thị lịch đã lưu gần nhất.'}</p></div>`;
 function render(){const wait=CLOUD&&((!SYNCED&&!(V.tab==='ad'&&!ADM))||(V.empty&&!ADM&&V.tab!=='ad'));$('#app').innerHTML=hdr()+(wait?waitV:{td:tdV,cal:calV,ev:evV,st:stV,ad:adV}[V.tab])();['td','cal','ev','st','ad'].forEach(t=>$('#t-'+t).className=V.tab==t?'on':'');tick()}

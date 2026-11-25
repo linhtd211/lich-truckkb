@@ -1,8 +1,10 @@
-# Báo cáo kiểm thử Lịch Trực KCB Visual 2.1.1
+# Báo cáo kiểm thử Lịch Trực KCB Visual 2.1.2
 
 ## Kết quả
 
-- Chủ đề 22/12 trỏ tới ảnh Đội danh dự do Lahuutrung chụp năm 2019. Đã kiểm tra mã hiển thị đường dẫn ảnh, liên kết nguồn trong chi tiết và việc làm mới bộ nhớ đệm chứa ảnh cũ.
+- Kiểm tra mở ô sửa tên, từ chối tên chỉ có khoảng trắng, lưu tên mới, mở lại dữ liệu, hiển thị trên ca trước và sau ngày áp dụng, và giữ nguyên ID cán bộ, vòng trực, các ca đã đổi và nhật ký lưu. Mục Nhật ký đổi lịch đã được bỏ khỏi giao diện Quản trị.
+
+- Chủ đề 22/12 trỏ tới ảnh Đội danh dự do Lahuutrung chụp năm 2019. Đã kiểm tra mã hiển thị đường dẫn ảnh, liên kết nguồn trong chi tiết và việc giữ ảnh đã đối chiếu khi nâng cấp bộ nhớ đệm giao diện.
 
 - So sánh lịch âm và ID người trực với Visual 2.0 trên 10.958 ngày từ 2010 đến 2039. Kết quả của hai phiên bản giống nhau trong bộ dữ liệu đối chiếu.
 - Rà đủ 53 chủ đề, gồm 4 mùa và 49 chủ đề sự kiện. Mọi chủ đề sự kiện có tranh riêng, icon hiển thị và lời chúc. 24 icon tiết khí được kiểm tra nội dung tệp và mã băm khác nhau.
@@ -15,7 +17,7 @@
 
 Trình duyệt của phiên này không mở được ứng dụng từ địa chỉ thử cục bộ. Chính sách truy cập chặn URL file cục bộ và trình duyệt tự động hóa không thể tạo phiên kiểm thử từ tiến trình cục bộ. Vì vậy báo cáo chưa có ảnh chụp ứng dụng thật và chưa xác minh trực quan ở 320, 375, 390, 430, 520 px hoặc desktop. Safari iPhone, PWA iOS cài thật, Chrome Android và Edge Windows cần kiểm tra trên thiết bị thực tế. Đồng bộ Firebase, đăng nhập quản trị và triển khai Pages thực tế cần kiểm thử trên môi trường của đơn vị.
 
-Visual 2.0 và phạm vi nâng cấp giao diện có thêm cán bộ và sửa thứ tự. Đổi tên cán bộ hiện chưa có thao tác riêng. Mốc 03/02 dùng Đảng kỳ đúng quy cách cùng Quốc kỳ và tranh trang trí. Tư liệu ảnh trực tiếp của hội nghị thành lập Đảng năm 1930 chưa tích hợp. Không còn mục chủ đề hoặc icon tiết khí thiếu tệp trong danh mục.
+Mốc 03/02 dùng Đảng kỳ đúng quy cách cùng Quốc kỳ và tranh trang trí. Tư liệu ảnh trực tiếp của hội nghị thành lập Đảng năm 1930 chưa tích hợp. Không còn mục chủ đề hoặc icon tiết khí thiếu tệp trong danh mục.
 
 ## Tái lập kiểm tra mã
 

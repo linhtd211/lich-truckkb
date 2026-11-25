@@ -9,6 +9,7 @@
     "Ngày 22/12 hiển thị ảnh Đội danh dự và có nguồn ảnh trong trang chi tiết",
     "Mã hiển thị chuyển ngày, tab Sự kiện, lịch tháng và thống kê",
     "Xếp vòng, thêm cán bộ, đổi ca, chỉ định và dữ liệu cũ",
+    "Sửa tên tại danh sách trực và ẩn Nhật ký đổi lịch",
     "Luồng Firebase tương thích với snapshot và ghi lịch từ quản trị viên mô phỏng",
     "So sánh với Visual 2.0 trên 10.958 ngày và cấu hình nguyên bản",
     "Service Worker mô phỏng: subpath, bộ khung, media, offline và dọn cache cũ theo phạm vi"

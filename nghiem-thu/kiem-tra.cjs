@@ -16,7 +16,7 @@ function application(filesRoot = root, sourceFiles = appFiles, saved = new Map()
     documentElement:{style:{}},
     createElement:() => ({remove(){}}),
     querySelector(selector) {
-      if(!nodes.has(selector)) nodes.set(selector,{innerHTML:'',style:{},value:'',className:''});
+      if(!nodes.has(selector)) nodes.set(selector,{innerHTML:'',style:{},value:'',className:'',focus(){}});
       return nodes.get(selector);
     }
   };
@@ -201,6 +201,49 @@ check('Xếp vòng, thêm cán bộ, đổi ca, chỉ định và dữ liệu c�
   assert.equal(legacy.run("dutyK('2026-11-24').name"),'Người trực dữ liệu cũ');
   assert.equal(legacy.run('S.pin'),undefined);
 });
+check('Sửa tên tại danh sách trực và ẩn Nhật ký đổi lịch',()=>{
+  const editor = application();
+  const {run: act,get: state,nodes: ui,saved: storage} = editor;
+  act("T('ad');renameStaff(0,'Không có quyền')");
+  assert.equal(act('byId(0).name'),'BS. Nguyễn Văn An');
+  assert.doesNotMatch(ui.get('#app').innerHTML,/Sửa tên/);
+
+  act("ADM=true;S.sw['2026-11-25']=0;S.log.push({t:'2026-11-25',x:'Nhật ký kiểm thử'});render()");
+  const priorData = state('[S.rot,S.sw,S.log,S.nid]');
+  const roster = ui.get('#app').innerHTML;
+  assert.match(roster,/id="staff-name-edit-0"[^>]*aria-controls="staff-name-form-0"/);
+  assert.match(roster,/id="staff-name-form-0"[^>]*hidden[^>]*renameStaff\(0,this.elements.staffName.value\)/);
+  assert.doesNotMatch(roster,/Nhật ký đổi lịch|Nhật ký kiểm thử/);
+
+  let expanded, focuses = 0;
+  const input = {value:'',focus(){focuses++;},select(){}};
+  const form = {hidden:true,elements:{staffName:input}};
+  ui.set('#staff-name-form-0',form);
+  ui.set('#staff-name-edit-0',{focus(){focuses++;},setAttribute(key,value){if(key==='aria-expanded')expanded=value;}});
+  act('showStaffNameForm(0,true)');
+  assert.equal(form.hidden,false);
+  assert.equal(expanded,'true');
+  assert.equal(input.value,'BS. Nguyễn Văn An');
+  act("renameStaff(0,'   ')");
+  assert.equal(form.hidden,false);
+  assert.equal(act('byId(0).name'),'BS. Nguyễn Văn An');
+  act('showStaffNameForm(0,false)');
+  assert.equal(form.hidden,true);
+  assert.equal(expanded,'false');
+
+  act("showStaffNameForm(0,true);renameStaff(0,'  BS. Nguyễn An  ')");
+  assert.ok(focuses>=3);
+  assert.equal(act("dutyK('2026-11-01').name"),'BS. Nguyễn An');
+  assert.equal(act("dutyK('2026-11-25').name"),'BS. Nguyễn An');
+  assert.equal(act("dutyK('2026-12-01').name"),'BS. Nguyễn An');
+  assert.deepEqual(state('[S.rot,S.sw,S.log,S.nid]'),priorData);
+  assert.match(ui.get('#app').innerHTML,/BS\. Nguyễn An/);
+  assert.doesNotMatch(ui.get('#app').innerHTML,/Nhật ký đổi lịch|Nhật ký kiểm thử/);
+
+  const reopened = application(root,appFiles,storage);
+  assert.equal(reopened.run('byId(0).name'),'BS. Nguyễn An');
+  assert.deepEqual(reopened.get('[S.rot,S.sw,S.log,S.nid]'),priorData);
+});
 check('Luồng Firebase tương thích với snapshot và ghi lịch từ quản trị viên mô phỏng',()=>{
   let onAuth,onSnapshot,write,initializations=0;
   const staff=[{id:0,name:'BS. Tài khoản thử'},{id:1,name:'ĐD. Tài khoản thử'}];
@@ -225,6 +268,9 @@ check('Luồng Firebase tương thích với snapshot và ghi lịch từ quản
   assert.equal(write.sw['2026-11-24'],0);
   assert.equal(write.updatedAt,1234);
   assert.ok('staff' in write && 'ev' in write && !('ph' in write));
+  remote.run("renameStaff(0,'BS. Tên sau đồng bộ')");
+  assert.equal(write.staff[0].name,'BS. Tên sau đồng bộ');
+  assert.equal(write.sw['2026-11-24'],0);
   onSnapshot({metadata:{fromCache:true,hasPendingWrites:false},exists:true,data:()=>record});
   assert.equal(remote.run('NET'),'off');
 });
@@ -269,9 +315,11 @@ async function workerChecks(){
     };
   };
   const cache={open,keys:async()=>[...books.keys()],delete:async key=>books.delete(key)};
-  const formerMedia = 'lich-truc-kcb:' + scope + ':visual-2.1-media';
-  const oldArtwork = scope + 'assets/illustrations/themes/quandoi.webp';
-  await (await open(formerMedia)).put(oldArtwork,new Response('ảnh 22/12 cũ'));
+  const formerShell = 'lich-truc-kcb:' + scope + ':visual-2.1.1-shell';
+  await (await open(formerShell)).put(scope+'js/app.js',new Response('giao diện Quản trị cũ'));
+  const currentMedia = 'lich-truc-kcb:' + scope + ':visual-2.1.1-media';
+  const currentArtwork = scope + 'assets/illustrations/themes/quandoi.webp';
+  await (await open(currentMedia)).put(currentArtwork,new Response('ảnh 22/12 đã đối chiếu'));
   const old=await open('lich-truc-visual-v7');
   await old.put(scope+'js/decor.js',new Response('old'));
   await old.put('https://qa.invalid/another-app/',new Response('separate'));
@@ -290,8 +338,8 @@ async function workerChecks(){
   await fire('install');
   await fire('activate');
   assert.ok(claimed&&books.has('other-app'));
-  assert.ok(!books.has(formerMedia));
-  assert.equal(await (await fire('fetch',new Request(oldArtwork))).text(),'webp');
+  assert.ok(!books.has(formerShell));
+  assert.equal(await (await fire('fetch',new Request(currentArtwork))).text(),'ảnh 22/12 đã đối chiếu');
   assert.equal(await old.match(scope+'js/decor.js'),undefined);
   assert.ok(await old.match('https://qa.invalid/another-app/'));
   const nav={method:'GET',mode:'navigate',url:scope};
@@ -308,7 +356,7 @@ async function workerChecks(){
 workerChecks().then(()=>{
   if (process.argv.includes('--manifest')) {
     fs.writeFileSync(path.join(root,'asset-manifest.json'),
-      JSON.stringify({version:'2.1.1',themes:registry,solarTerms:termIcons},null,2)+'\n');
+      JSON.stringify({version:'2.1.2',themes:registry,solarTerms:termIcons},null,2)+'\n');
   }
   if (process.argv.includes('--report')) {
     fs.writeFileSync(path.join(__dirname,'ket-qua.json'),JSON.stringify({tests,themeDates:resultDays},null,2)+'\n');
