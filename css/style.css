@@ -1,9 +1,8 @@
 :root{--bg:#fbf8ef;--card:#ffffff;--ink:#26332b;--mut:#7d8a80;--pri:#0f7a47;--red:#d8352b;--or:#d9822b;--line:#e6dfcb;--soft:#f4f1e6;--sun:#f8d6d0;--mp:#0f7a47;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 :root {
   color-scheme: light;
-  --menu-height: 66px;
-  --menu-bottom-gap: 8px;
+  --footer-safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -12,13 +11,19 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+html { height: 100dvh; }
+body {
+  display: flex;
+  flex-direction: column;
+}
 body:before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#22a865;z-index:10}
 #app {
   width: 100%;
   max-width: 520px;
-  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   margin-inline: auto;
-  padding: 0 12px calc(var(--menu-height) + var(--menu-bottom-gap) + 10px);
+  padding: 0 12px 10px;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: contain;
@@ -85,17 +90,15 @@ input,select{width:100%;padding:10px 12px;border-radius:14px;border:1px solid va
 .btn{width:100%;padding:11px;border:0;border-radius:14px;background:var(--pri);color:#fff;font:inherit;font-weight:600}.btn.o{background:var(--soft);color:var(--ink)}
 .sbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:4px 9px}h3{margin:0 0 8px;font-size:15px}
 .tabs {
-  position: fixed;
-  left: 50%;
-  bottom: calc(var(--menu-bottom-gap) + env(safe-area-inset-bottom, 0px));
-  width: min(520px, calc(100% - 24px));
-  height: var(--menu-height);
-  transform: translateX(-50%);
+  flex: none;
+  min-height: calc(66px + var(--footer-safe-bottom));
   display: flex;
-  padding: 5px 3px;
+  padding-top: 5px;
+  padding-bottom: calc(5px + var(--footer-safe-bottom));
+  padding-left: max(3px, calc((100% - 520px) / 2), env(safe-area-inset-left, 0px));
+  padding-right: max(3px, calc((100% - 520px) / 2), env(safe-area-inset-right, 0px));
   background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 19px;
+  border-top: 1px solid var(--line);
 }
 .tabs button {
   flex: 1 1 0;
