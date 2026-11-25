@@ -12,7 +12,7 @@ CLOUD={
 who:()=>user?user.email:'',
 login(e,p){if(!e||!p)return toast('Nhập email và mật khẩu');auth.signInWithEmailAndPassword(e,p).then(()=>toast('Đã đăng nhập quản trị')).catch(x=>toast(msg[x.code]||'Sai email hoặc mật khẩu'))},
 logout(){auth.signOut()},
-push(){clearTimeout(tm);tm=setTimeout(()=>ref.set(Object.assign(pack(),{updatedAt:firebase.firestore.FieldValue.serverTimestamp(),updatedBy:user?user.email:''})).catch(()=>toast('Không ghi được lên máy chủ: cần quyền quản trị và có mạng')),250)}
+push(){clearTimeout(tm);tm=setTimeout(()=>ref.set(Object.assign(pack(),{updatedAt:firebase.firestore.FieldValue.serverTimestamp()})).catch(()=>toast('Không ghi được lên máy chủ: cần quyền quản trị và có mạng')),250)}
 };
 auth.onAuthStateChanged(u=>{user=u;ADM=!!u;if(ADM&&V.empty)CLOUD.push();render()});
 ref.onSnapshot(s=>{

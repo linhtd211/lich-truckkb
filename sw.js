@@ -2,7 +2,7 @@
 const APP_SCOPE = self.registration.scope;
 const scopeURL = file => new URL(file, APP_SCOPE).href;
 const CACHE_PREFIX = 'lich-truc-kcb:' + APP_SCOPE + ':';
-const SHELL = CACHE_PREFIX + 'visual-2.1.4-shell';
+const SHELL = CACHE_PREFIX + 'visual-2.1.4-firebase-r2-shell';
 const MEDIA = CACHE_PREFIX + 'visual-2.1.1-media';
 const MEDIA_LIMIT = 144;
 const INDEX = scopeURL('index.html');
