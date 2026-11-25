@@ -1,12 +1,28 @@
 :root{--bg:#fbf8ef;--card:#ffffff;--ink:#26332b;--mut:#7d8a80;--pri:#0f7a47;--red:#d8352b;--or:#d9822b;--line:#e6dfcb;--soft:#f4f1e6;--sun:#f8d6d0;--mp:#0f7a47;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-:root{color-scheme:light}
+:root {
+  color-scheme: light;
+  --menu-height: 66px;
+  --menu-bottom-gap: 8px;
+}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background-color:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-body{padding-bottom:84px}
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
 body:before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#22a865;z-index:10}
-#app{max-width:520px;margin:0 auto;padding:0 12px}
+#app {
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+  margin-inline: auto;
+  padding: 0 12px calc(var(--menu-height) + var(--menu-bottom-gap) + 10px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:0 -12px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(#22a865,#139353);color:#fff;border-radius:0 0 22px 22px;box-shadow:0 6px 16px rgba(11,106,60,.25)}
 .ttl{font-size:17px}.pill{border:0;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;padding:9px 14px;font:inherit;font-size:13.5px;font-weight:600}
 .paper{position:relative;overflow:hidden;margin-top:12px;border-radius:26px;background:var(--card);border:1px solid var(--line);padding:18px 14px 92px;text-align:center;box-shadow:0 4px 16px rgba(60,80,50,.08)}
@@ -70,10 +86,12 @@ input,select{width:100%;padding:10px 12px;border-radius:14px;border:1px solid va
 .sbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:4px 9px}h3{margin:0 0 8px;font-size:15px}
 .tabs {
   position: fixed;
-  inset: auto 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  bottom: calc(var(--menu-bottom-gap) + env(safe-area-inset-bottom, 0px));
+  width: min(520px, calc(100% - 24px));
+  height: var(--menu-height);
+  transform: translateX(-50%);
   display: flex;
-  max-width: 520px;
-  margin-inline: auto;
   padding: 5px 3px;
   background: var(--card);
   border: 1px solid var(--line);

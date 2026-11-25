@@ -5,7 +5,6 @@
   --surface-border: #e9e6d9;
 }
 
-body { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
 body, html { touch-action: manipulation; }
 button { cursor: pointer; }
 button:focus-visible, [role="button"]:focus-visible, a:focus-visible {
@@ -13,6 +12,7 @@ button:focus-visible, [role="button"]:focus-visible, a:focus-visible {
   outline-offset: 3px;
 }
 .top {
+  top: 0;
   background: #13744a;
   border-radius: 0 0 19px 19px;
   box-shadow: none;
